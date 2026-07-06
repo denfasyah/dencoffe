@@ -1,28 +1,28 @@
 export interface FeatureItem {
-  icon: string;
+  icon: string; // Will store Lucide icon identifier names
   title: string;
   description: string;
 }
 
 export const featuresData: FeatureItem[] = [
   {
-    icon: "wifi",
+    icon: "Wifi",
     title: "Wi-Fi Gratis",
     description: "Koneksi internet berkecepatan tinggi yang stabil bagi para pekerja digital."
   },
   {
-    icon: "mosque",
-    title: "Mushola",
-    description: "Ruang ibadah yang tenang, bersih, dan nyaman bagi para tamu kami."
+    icon: "Droplets",
+    title: "Toilet Bersih",
+    description: "Fasilitas toilet yang bersih, higienis, dan terawat dengan baik."
   },
   {
-    icon: "local_parking",
+    icon: "MapPin",
     title: "Area Parkir",
-    description: "Area parkir yang luas, aman, dan terjaga untuk kenyamanan berkendara Anda."
+    description: "Area parkir yang luas, aman, dan mudah diakses untuk kendaraan Anda."
   },
   {
-    icon: "laptop_mac",
-    title: "Ruang Kerja Nyaman",
-    description: "Kursi ergonomis dan zona tenang yang cocok untuk fokus bekerja atau rapat."
+    icon: "Coffee",
+    title: "Ruang Nyaman",
+    description: "Cocok untuk fokus menyelesaikan pekerjaan atau sekadar nongkrong chill."
   }
 ];

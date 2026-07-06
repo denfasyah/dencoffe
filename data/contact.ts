@@ -12,24 +12,24 @@ export interface ContactData {
   footerDescription: string;
   socials: {
     instagram: string;
-    facebook: string;
-    emailAddress: string;
+    tiktok: string;
+    whatsapp: string;
   };
 }
 
 export const contactData: ContactData = {
   address: {
-    icon: "location_on",
+    icon: "MapPin",
     title: "Alamat Kami",
     value: "Jl. Lembah Kopi No. 123, Bandung, Jawa Barat"
   },
   hours: {
-    icon: "schedule",
+    icon: "Clock",
     title: "Jam Operasional",
     value: "Senin - Minggu: 07:00 - 22:00 WIB"
   },
   phone: {
-    icon: "call",
+    icon: "Phone",
     title: "Hubungi Langsung",
     value: "+62 (22) 555-1234"
   },
@@ -37,7 +37,7 @@ export const contactData: ContactData = {
   footerDescription: "Meningkatkan ritual harian menjadi pengalaman yang luar biasa. Bergabunglah dengan kami untuk secangkir keunggulan kopi, dibuat dengan semangat dan disajikan dengan sepenuh hati.",
   socials: {
     instagram: "https://instagram.com/denbizcoffee",
-    facebook: "https://facebook.com/denbizcoffee",
-    emailAddress: "mailto:hello@denbizcoffee.com"
+    tiktok: "https://tiktok.com/@denbizcoffee",
+    whatsapp: "https://wa.me/6281234567890?text=Halo%20Denbiz%20Coffee%2C%20saya%20ingin%20melakukan%20reservasi%20meja%20untuk%20nongkrong%20/%20bekerja."
   }
 };

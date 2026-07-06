@@ -27,12 +27,12 @@ export const aboutData: AboutData = {
   imageAlt: "Barista sedang menyeduh kopi dengan metode manual brew",
   features: [
     {
-      icon: "eco",
+      icon: "Leaf",
       title: "Sumber yang Berkelanjutan",
       description: "100% biji kopi organik pilihan yang diperoleh langsung dari petani lokal dengan prinsip keadilan perdagangan (fair-trade)."
     },
     {
-      icon: "workspace_premium",
+      icon: "Award",
       title: "Racikan Pemenang Penghargaan",
       description: "Terpilih sebagai kedai pemanggangan kopi (roastery) terbaik di kota ini selama lima tahun berturut-turut."
     }
