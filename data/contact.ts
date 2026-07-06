@@ -21,7 +21,7 @@ export const contactData: ContactData = {
   address: {
     icon: "MapPin",
     title: "Alamat Kami",
-    value: "Jl. Lembah Kopi No. 123, Bandung, Jawa Barat"
+    value: "Jl. Sultan Agung km 28,5, Bekasi, Jawa Barat"
   },
   hours: {
     icon: "Clock",
@@ -36,8 +36,8 @@ export const contactData: ContactData = {
   email: "hello@denbizcoffee.com",
   footerDescription: "Meningkatkan ritual harian menjadi pengalaman yang luar biasa. Bergabunglah dengan kami untuk secangkir keunggulan kopi, dibuat dengan semangat dan disajikan dengan sepenuh hati.",
   socials: {
-    instagram: "https://instagram.com/denbizcoffee",
-    tiktok: "https://tiktok.com/@denbizcoffee",
-    whatsapp: "https://wa.me/6281234567890?text=Halo%20Denbiz%20Coffee%2C%20saya%20ingin%20melakukan%20reservasi%20meja%20untuk%20nongkrong%20/%20bekerja."
+    instagram: "https://instagram.com",
+    tiktok: "https://tiktok.com",
+    whatsapp: "https://wa.me/6285173190648?text=Halo%20Denbiz%20Coffee%2C%20saya%20ingin%20melakukan%20reservasi%20meja%20untuk%20nongkrong%20/%20bekerja."
   }
 };
