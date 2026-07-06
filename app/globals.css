@@ -1,26 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Work+Sans:wght@400;500;600&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #2d1b14;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #4a2c21;
+  --color-on-primary-container: #fddbd0;
+  --color-secondary: #6b5c4c;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #f4dfcb;
+  --color-on-secondary-container: #241a0e;
+  --color-tertiary: #5d4034;
+  --color-on-tertiary: #ffffff;
+  --color-background: #fdf9f4;
+  --color-on-background: #1c1c19;
+  --color-surface: #fdf9f4;
+  --color-on-surface: #1c1c19;
+  --color-surface-variant: #e6e2dd;
+  --color-on-surface-variant: #4f4441;
+  --color-outline: #817470;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f7f3ee;
+  --color-surface-container: #f1ede8;
+  --color-surface-container-high: #ebe8e3;
+  --color-surface-container-highest: #e6e2dd;
+
+  --radius-DEFAULT: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  --font-headline-md: "Manrope", sans-serif;
+  --font-display-lg-mobile: "Manrope", sans-serif;
+  --font-display-lg: "Manrope", sans-serif;
+  --font-body-lg: "Work Sans", sans-serif;
+  --font-body-md: "Work Sans", sans-serif;
+  --font-label-md: "Manrope", sans-serif;
+  --font-headline-lg: "Manrope", sans-serif;
+  --font-script: "Sacramento", cursive;
+
+  --spacing-container-max-width: 1200px;
+  --spacing-gutter: 24px;
+  --spacing-base: 8px;
+  --spacing-margin-mobile: 20px;
+  --spacing-section-gap-mobile: 64px;
+  --spacing-section-gap-desktop: 120px;
+
+  --animate-ken-burns: ken-burns 20s infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes ken-burns {
+  0% {
+    transform: scale(1.05) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.1) translate(-1%, -1%);
+  }
+  100% {
+    transform: scale(1.05) translate(0, 0);
   }
 }
 
+.script-logo {
+  font-family: 'Sacramento', cursive;
+}
+
+.bg-pattern {
+  background-image: radial-gradient(#2d1b14 0.5px, transparent 0.5px);
+  background-size: 32px 32px;
+}
+
+.hero-gradient {
+  background: linear-gradient(to bottom, rgba(45, 27, 20, 0.7), rgba(45, 27, 20, 0.3));
+}
+
+/* Material Symbols Outlined Custom Configuration */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined.fill-1 {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* Custom Scroll Smooth */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  font-family: "Work Sans", sans-serif;
 }

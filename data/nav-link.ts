@@ -4,10 +4,10 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
+  { label: "Beranda", href: "#home" },
+  { label: "Tentang Kami", href: "#about" },
   { label: "Menu", href: "#menu" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+  { label: "Testimoni", href: "#testimonials" },
+  { label: "Galeri", href: "#gallery" },
+  { label: "Kontak", href: "#contact" },
 ];
