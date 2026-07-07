@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Denbiz Coffee | Pengalaman Kopi Artisanal Premium",
@@ -16,9 +14,7 @@ export default function RootLayout({
   return (
     <html lang="id" className="scroll-smooth h-full antialiased">
       <body className="min-h-full flex flex-col bg-background text-on-background">
-        <Navbar />
         {children}
-        <Footer />
       </body>
     </html>
   );
