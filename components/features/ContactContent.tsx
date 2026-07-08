@@ -182,7 +182,7 @@ export default function ContactContent() {
           <SectionWrapper>
             <div className="rounded-2xl overflow-hidden shadow-md border border-outline/10">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7984583547694!2d107.61895731461816!3d-6.914744994997538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e64c5e8d0b9d%3A0x8f5ceef0e5b3e5c5!2sBandung%2C%20Kota%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.700120958927!2d106.95858437200354!3d-6.218654447113552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698d006345fce7%3A0x4169855e873eb9b9!2sKedai%20Kopi%20Bang%20Jenggot!5e1!3m2!1sid!2sid!4v1783519738613!5m2!1sid!2sid"
                 width="100%"
                 height="380"
                 style={{ border: 0 }}
@@ -191,6 +191,7 @@ export default function ContactContent() {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Lokasi Denbiz Coffee"
               />
+              
             </div>
           </SectionWrapper>
         </div>

@@ -19,7 +19,7 @@ export const displayBoardData: DisplayBoardItem[] = [
     description: "Nikmati perpaduan sempurna dari kue croissant mentega segar dengan secangkir Velvet Cloud Latte hangat.",
     price: "Rp 75.000",
     promoBadge: "PROMO HEMAT 20%",
-    mediaUrl: "/img5.jpeg",
+    mediaUrl: "/img5.png",
     bgColor: "bg-red-600 text-white"
   },
   {
@@ -30,7 +30,7 @@ export const displayBoardData: DisplayBoardItem[] = [
     description: "Perpaduan espresso Arabika robusta, susu segar, dan sirup gula aren manis gurih alami khas Indonesia.",
     price: "Rp 17.000",
     promoBadge: "BEST SELLER",
-    mediaUrl: "/butterscotch.jpeg",
+    mediaUrl: "/bestseller.png",
     bgColor: "bg-amber-600 text-white"
   },
   {
@@ -38,7 +38,7 @@ export const displayBoardData: DisplayBoardItem[] = [
     type: "image",
     title: "Suasana Hangat & Nyaman",
     description: "Tempat terbaik untuk berkumpul bersama teman, bekerja produktif, atau sekadar menikmati waktu santai Anda.",
-    mediaUrl: "/img2.jpeg"
+    mediaUrl: "/img2.png"
   },
   {
     id: "d4",

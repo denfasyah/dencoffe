@@ -21,23 +21,23 @@ export const contactData: ContactData = {
   address: {
     icon: "MapPin",
     title: "Alamat Kami",
-    value: "Jl. Sultan Agung km 28,5, Bekasi, Jawa Barat"
+    value: "Jl. Kali Baru Barat No.1G, RT.007/RW.011, Kota Baru, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17133"
   },
   hours: {
     icon: "Clock",
     title: "Jam Operasional",
-    value: "Senin - Minggu: 07:00 - 22:00 WIB"
+    value: "Selasa - Jum'at : 13:00 - 21:00 WIB <br> Sabtu - Minggu : 10:00 - 22:00 WIB <br> Senin : Libur"
   },
   phone: {
     icon: "Phone",
     title: "Hubungi Langsung",
-    value: "+62 (22) 555-1234"
+    value: "+6287875330263"
   },
-  email: "hello@denbizcoffee.com",
+  email: "[EMAIL_ADDRESS]",
   footerDescription: "Meningkatkan ritual harian menjadi pengalaman yang luar biasa. Bergabunglah dengan kami untuk secangkir keunggulan kopi, dibuat dengan semangat dan disajikan dengan sepenuh hati.",
   socials: {
     instagram: "https://instagram.com",
     tiktok: "https://tiktok.com",
-    whatsapp: "https://wa.me/6285173190648?text=Halo%20Denbiz%20Coffee%2C%20saya%20ingin%20melakukan%20reservasi%20meja%20untuk%20nongkrong%20/%20bekerja."
+    whatsapp: "https://wa.me/6287875330263?text=Halo%20Kedai%20Kopi%20Bang%20Jenggot%2C%20saya%20ingin%20melakukan%20reservasi%20meja%20untuk%20nongkrong%20/%20bekerja."
   }
 };

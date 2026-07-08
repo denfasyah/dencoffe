@@ -54,19 +54,19 @@ export default function DisplayPage() {
     <div className="relative min-h-screen lg:h-screen w-full lg:w-screen bg-neutral-100 text-neutral-800 overflow-x-hidden overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row select-none font-sans">
       
       {/* 1. LEFT SIDE: Dynamic Slides (Solid Colors / Full Bleed Media) */}
-      <div className={`w-full lg:w-[40%] xl:w-[37%] h-[48vh] lg:h-full relative overflow-hidden flex flex-col justify-between ${bgClass} border-b lg:border-b-0 lg:border-r border-neutral-200 transition-colors duration-500`}>
+      <div className={`w-full lg:w-[40%] xl:w-[37%] h-auto min-h-[440px] md:min-h-[480px] lg:h-full relative overflow-hidden flex flex-col justify-between ${bgClass} border-b lg:border-b-0 lg:border-r border-neutral-200 transition-colors duration-500`}>
         
         {/* Floating Header Back Button */}
         <div className="p-4 md:p-6 flex justify-between items-center z-10">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 bg-white/90 hover:bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full text-neutral-700 transition-all duration-300 shadow-sm cursor-pointer group"
+            className="flex items-center gap-2 bg-black/15 hover:bg-black/30 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-white/90 transition-all duration-300 shadow-sm cursor-pointer group"
           >
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
             <span className="text-[10px] font-bold uppercase tracking-wider">Kembali</span>
           </button>
 
-          <div className="flex items-center gap-1.5 bg-white/90 border border-neutral-200 px-3.5 py-1.5 rounded-full text-neutral-700 text-[10px] font-black tracking-widest uppercase shadow-sm">
+          <div className="flex items-center gap-1.5 bg-black/15 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-white/90 text-[10px] font-black tracking-widest uppercase shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             Live
           </div>

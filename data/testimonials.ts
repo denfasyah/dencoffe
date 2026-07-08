@@ -18,34 +18,34 @@ export const testimonialsData: TestimonialItem[] = [
   },
   {
     id: "t2",
-    name: "Julian Thorne",
+    name: "Jemi kristian",
     role: "Local Guide",
     rating: 5,
-    content: "Saya datang ke sini hampir setiap pagi untuk bekerja. Wi-Fi berkecepatan tinggi, tempat duduk yang nyaman, dan kopinya selalu konsisten sempurna.",
+    content: "Tempatnya enak, ownernya very friendly and nice, playlist lagunya jg enak enak, dan yang paling penting kopinya jg enak enak banget. harganya masih affordable dan coffee shop nya buka sampe jam 11 malam. pokonya nyaman banget",
     avatarUrl: ""
   },
   {
     id: "t3",
-    name: "Marcus Chen",
+    name: "adrian prima",
     role: "Local Guide",
     rating: 5,
-    content: "Biji kopi single-origin yang mereka jual sangat luar biasa. Hasil seduhan saya di rumah meningkat drastis berkat dedikasi tim pemanggangan mereka.",
+    content: "Tempat enak buat nongki cantik.... minumannya enak semua.. bintang 5.",
     avatarUrl: ""
   },
   {
     id: "t4",
-    name: "Sarah Utami",
+    name: "Edi Tarmidi",
     role: "Local Guide",
     rating: 5,
-    content: "Suasana kerja (work from cafe) yang sangat mendukung. Selain kopinya yang mantap, hidangan makanannya pun pas untuk menemani deadline.",
+    content: "Harga terjangkau dan rasanya mantab.kopi susu gula arennya double shotnya mantab.",
     avatarUrl: ""
   },
   {
     id: "t5",
-    name: "Budi Santoso",
+    name: "Rya Chairiyani",
     role: "Local Guide",
     rating: 5,
-    content: "Tempat andalan untuk mengadakan pertemuan bisnis santai. Lokasi strategis, area parkir luas, dan musholanya sangat bersih serta terjaga.",
+    content: "Tempatnya di pinggir jalan persis di depan Indomaret dan samping lazzato, Menu varian kopinya beragam, dan enak². Untuk hazelnutnya enak, walaupun tidak terlalu manis tapi enak  coffee rootbeer nya enak, bersoda mirip saparila tapi ada asamnya",
     avatarUrl: ""
   }
 ];

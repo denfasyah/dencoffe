@@ -3,6 +3,7 @@
 import React from "react";
 import { contactData } from "@/data/contact";
 import { navLinks } from "@/data/nav-link";
+import Image from "next/image";
 
 // Custom SVG Icons for TikTok, Instagram, and WhatsApp
 const InstagramIcon = () => (
@@ -28,10 +29,11 @@ export default function Footer() {
     <footer className="bg-primary text-on-primary py-16 px-gutter relative">
       <div className="max-w-container-max-width mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-2">
-          <a className="text-4xl text-on-primary script-logo mb-6 block" href="#home">
+          {/* <a className="text-4xl text-on-primary script-logo mb-6 block" href="#home">
             Denbiz Coffee
-          </a>
-          <p className="text-on-primary/60 max-w-md mb-6 leading-relaxed text-sm">
+          </a> */}
+          <Image src="/logo.png" alt="Logo" width={100} height={100} />
+          <p className="text-on-primary/60 max-w-md mb-6 mt-5 leading-relaxed text-sm">
             {contactData.footerDescription}
           </p>
           
@@ -110,7 +112,7 @@ export default function Footer() {
       </div>
       
       <div className="max-w-container-max-width mx-auto pt-12 mt-12 border-t border-on-primary/10 text-center text-on-primary/40 text-[10px] uppercase tracking-[0.2em]">
-        &copy; {new Date().getFullYear()} Denbiz Coffee &mdash; Hak Cipta Dilindungi. Dibuat untuk Penikmat Kopi Sejati.
+        &copy; {new Date().getFullYear()} &nbsp; Kedai Kopi Bang Jenggot &mdash; Hak Cipta Dilindungi. Dibuat untuk Penikmat Kopi Sejati.
       </div>
     </footer>
   );

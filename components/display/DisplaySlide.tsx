@@ -24,9 +24,9 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.96 }}
         transition={{ duration: 0.4 }}
-        className="h-full flex flex-col justify-between p-6 md:p-8"
+        className="h-full flex flex-col justify-start gap-4 p-6 md:p-8"
       >
-        <div className="space-y-3">
+        <div className="space-y-2">
           <span className="inline-block px-3 py-1 rounded-full text-[10px] font-black bg-white text-neutral-900 uppercase tracking-widest shadow-sm">
             {item.promoBadge}
           </span>
@@ -38,14 +38,14 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
           </p>
         </div>
         
-        <div className="mt-4 space-y-3">
-          <div className="relative rounded-xl overflow-hidden aspect-[16/9] max-h-[170px] shadow-lg border border-white/20">
-            <img src={item.mediaUrl} alt={item.title} className="object-cover w-full h-full" />
+        <div className="space-y-2">
+          <div className="relative rounded-xl overflow-hidden aspect-[16/9] max-h-40 md:max-h-56 shadow-lg border border-white/20">
+            <img src={item.mediaUrl} alt={item.title} className="object-containt w-full h-full" />
           </div>
           {item.price && (
-            <div className="flex items-baseline gap-2">
-              <span className="text-white/70 text-[10px] md:text-xs uppercase font-bold">Harga:</span>
-              <span className="text-2xl md:text-3xl font-black tracking-tight text-white">{item.price}</span>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-white/70 text-[9px] md:text-xs uppercase font-bold">Harga:</span>
+              <span className="text-xl md:text-2xl font-black tracking-tight text-white">{item.price}</span>
             </div>
           )}
         </div>

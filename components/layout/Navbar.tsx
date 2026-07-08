@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { navLinks } from "@/data/nav-link";
 import { Menu, X } from "lucide-react";
 import { contactData } from "@/data/contact";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -38,7 +39,7 @@ export default function Navbar() {
               scrolled ? "scale-90" : ""
             }`}
           >
-            Denbiz Coffee
+            <Image src="/logo.png" alt="Logo" width={50} height={50} />
           </a>
 
           {/* Desktop Navigation */}

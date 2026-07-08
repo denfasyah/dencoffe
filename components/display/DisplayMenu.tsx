@@ -3,6 +3,7 @@
 import React from "react";
 import { MenuItem } from "@/data/menu";
 import { Coffee, Sparkles, Utensils, Heart } from "lucide-react";
+import Image from "next/image";
 
 interface DisplayMenuProps {
   coffeeItems: MenuItem[];
@@ -32,14 +33,12 @@ export default function DisplayMenu({
       <div className="flex items-center justify-between border-b-2 border-neutral-900 pb-3 mb-4">
         {/* Logo & Brand */}
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-[#1b4353] border-4 border-neutral-900 flex items-center justify-center text-white relative flex-shrink-0 shadow-sm">
-            <span className="font-extrabold text-[7px] tracking-tighter uppercase text-center leading-none">
-              KOPI<br />BANG<br />JENGGOT
-            </span>
+          <div className="w-14 h-14 rounded-full border-4 flex items-center justify-center text-white relative flex-shrink-0 shadow-sm">
+             <Image src="/logo.png" alt="Logo" width={60} height={60} />
           </div>
           <div>
             <h1 className="text-xl md:text-2xl font-black text-neutral-900 tracking-tight leading-none uppercase">
-              KOPI BANG JENGGOT
+              KEDAI KOPI BANG JENGGOT
             </h1>
             <p className="text-[9px] font-serif italic text-neutral-500 mt-0.5 font-semibold tracking-wide">
               Really taste the coffee
@@ -187,10 +186,10 @@ export default function DisplayMenu({
       </div>
 
       {/* Tiny Footer */}
-      <div className="mt-3 pt-1 border-t border-neutral-200 flex justify-between items-center text-[8px] text-neutral-400 font-bold uppercase tracking-wider">
+      {/* <div className="mt-3 pt-1 border-t border-neutral-200 flex justify-between items-center text-[8px] text-neutral-400 font-bold uppercase tracking-wider">
         <span>Kopi Bang Jenggot</span>
         <span className="flex items-center gap-0.5">Made with <Heart className="w-2.5 h-2.5 text-rose-500 fill-current" /> in Indonesia</span>
-      </div>
+      </div> */}
     </div>
   );
 }
