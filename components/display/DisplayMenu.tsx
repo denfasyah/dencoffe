@@ -28,7 +28,7 @@ export default function DisplayMenu({
   };
 
   return (
-    <div className="w-full lg:w-[60%] xl:w-[63%] bg-white text-neutral-800 p-4 md:p-6 lg:p-8 flex flex-col justify-between min-h-[60vh] lg:h-full overflow-visible lg:overflow-hidden">
+    <div className="w-full lg:w-1/2 bg-white text-neutral-800 p-4 md:p-6 lg:p-8 flex flex-col justify-between min-h-[60vh] lg:h-full overflow-visible lg:overflow-hidden">
       {/* Menu Header */}
       <div className="flex items-center justify-between border-b-2 border-neutral-900 pb-3 mb-4">
         {/* Logo & Brand */}

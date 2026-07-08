@@ -174,7 +174,7 @@ export default function Footer() {
                   Terima Kasih! ☕
                 </h3>
                 <p className="text-sm text-primary/70 leading-relaxed" style={{ fontFamily: "Manrope, sans-serif" }}>
-                  Email Anda berhasil didaftarkan. Kami akan mengirimkan promo dan berita terbaru dari <strong>Kedai Kopi Bang Jenggot</strong> ke inbox Anda.
+                  Email Anda berhasil didaftarkan. Tunggu info dari kami ya.
                 </p>
               </div>
 
