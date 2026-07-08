@@ -3,8 +3,12 @@ import PageHero from "@/components/shared/PageHero";
 import AboutContent from "@/components/features/AboutContent";
 
 export const metadata: Metadata = {
-  title: "Tentang Kami | Denbiz Coffee",
-  description: "Kisah di balik Denbiz Coffee — dari biji kopi pilihan hingga cangkir sempurna di meja Anda.",
+  title: "Tentang Kami",
+  description: "Kenalan lebih dekat dengan Kedai Kopi Bang Jenggot — kedai kopi nyaman di Bekasi Barat yang hadir untuk menemani setiap momen Anda dengan kopi berkualitas dan suasana hangat.",
+  openGraph: {
+    title: "Tentang Kami | Kedai Kopi Bang Jenggot",
+    description: "Kedai Kopi Bang Jenggot hadir sebagai ruang yang nyaman di Bekasi Barat untuk menikmati kopi, berbagi cerita, dan menciptakan momen berharga.",
+  },
 };
 
 export default function AboutPage() {
