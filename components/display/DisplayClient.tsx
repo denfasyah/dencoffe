@@ -56,25 +56,9 @@ export default function DisplayClient() {
       {/* 1. LEFT SIDE: Dynamic Slides (Solid Colors / Full Bleed Media) */}
       <div className={`w-full lg:w-1/2 h-auto min-h-[440px] md:min-h-[480px] lg:h-full relative overflow-hidden flex flex-col justify-between ${bgClass} border-b lg:border-b-0 lg:border-r border-neutral-200 transition-colors duration-500`}>
         
-        {/* Floating Header Back Button */}
-        <div className="p-4 md:p-6 flex justify-between items-center z-10">
-          <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 bg-black/15 hover:bg-black/30 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-white/90 transition-all duration-300 shadow-sm cursor-pointer group"
-          >
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
-            <span className="text-[10px] font-bold uppercase tracking-wider">Kembali</span>
-          </button>
-
-          <div className="flex items-center gap-1.5 bg-black/15 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-white/90 text-[10px] font-black tracking-widest uppercase shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Live
-          </div>
-        </div>
-
-        {/* Content Wrapper */}
-        <div className="flex-grow flex flex-col justify-center overflow-hidden">
-          <AnimatePresence mode="wait">
+        {/* Full Bleed Slides Container */}
+        <div className="absolute inset-0 z-0">
+          <AnimatePresence>
             <DisplaySlide 
               key={currentIndex} 
               currentIndex={currentIndex} 
@@ -83,10 +67,29 @@ export default function DisplayClient() {
           </AnimatePresence>
         </div>
 
+        {/* Floating Header Back Button */}
+        <div className="p-4 md:p-6 flex justify-between items-center z-10 relative pointer-events-none">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 bg-black/15 hover:bg-black/30 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-white/90 transition-all duration-300 shadow-sm cursor-pointer group pointer-events-auto"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
+            <span className="text-[10px] font-bold uppercase tracking-wider">Kembali</span>
+          </button>
+
+          <div className="flex items-center gap-1.5 bg-black/15 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-white/90 text-[10px] font-black tracking-widest uppercase shadow-sm pointer-events-auto">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            Live
+          </div>
+        </div>
+
+        {/* Empty Flex Grow spacer so flex-col justify-between works around the absolute background */}
+        <div className="flex-grow pointer-events-none" />
+
         {/* Bottom Controls */}
-        <div className="p-4 md:p-6 flex items-center justify-between z-10 border-t border-black/5 bg-black/5 backdrop-blur-xs">
+        <div className="p-4 md:p-6 flex items-center justify-between z-10 border-t border-black/5 bg-black/5 backdrop-blur-xs relative pointer-events-none">
           {/* Progress dots */}
-          <div className="flex gap-1.5">
+          <div className="flex gap-1.5 pointer-events-auto">
             {Array.from({ length: totalSlides }).map((_, idx) => (
               <button
                 key={idx}
@@ -110,7 +113,7 @@ export default function DisplayClient() {
           </div>
 
           {/* Action buttons */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 pointer-events-auto">
             <button
               onClick={() => setIsPlaying(!isPlaying)}
               className="p-1.5 bg-white/90 hover:bg-white text-neutral-700 border border-neutral-200 rounded-full shadow-sm cursor-pointer"

@@ -23,7 +23,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
-        className="h-full w-full flex flex-col md:flex-row relative overflow-hidden p-6 md:p-10 lg:p-12 gap-6"
+        className="absolute inset-0 w-full h-full flex flex-col md:flex-row overflow-hidden p-6 md:p-10 pt-24 pb-24 md:pt-28 md:pb-28 gap-6"
       >
         {/* Left Column: Text Content */}
         <div className="w-full md:w-1/2 h-full flex flex-col justify-between z-10">
@@ -111,7 +111,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-10 text-white overflow-hidden"
+        className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-10 pb-24 md:pb-28 text-white overflow-hidden"
       >
         <img 
           src={item.mediaUrl} 
@@ -158,7 +158,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-10 text-white overflow-hidden"
+        className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-10 pb-24 md:pb-28 text-white overflow-hidden"
       >
         <video
           src={item.mediaUrl}
