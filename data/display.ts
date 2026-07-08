@@ -1,30 +1,50 @@
 export interface DisplayBoardItem {
   id: string;
+  type: "promo" | "bestseller" | "image" | "video";
   title: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
   price?: string;
   promoBadge?: string;
-  imageUrl: string;
+  mediaUrl: string; // Image or Video URL
+  bgColor?: string; // Solid Tailwind class, e.g. "bg-orange-600"
 }
 
 export const displayBoardData: DisplayBoardItem[] = [
   {
-    id: "d2",
+    id: "d1",
+    type: "promo",
     title: "Artisan Pastry & Coffee Combo",
     subtitle: "Promo Sarapan Istimewa",
-    description: "Nikmati perpaduan sempurna dari kue croissant mentega segar yang dipanggang hari ini dengan secangkir Velvet Cloud Latte hangat.",
+    description: "Nikmati perpaduan sempurna dari kue croissant mentega segar dengan secangkir Velvet Cloud Latte hangat.",
     price: "Rp 75.000",
     promoBadge: "PROMO HEMAT 20%",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuD6Mu5q5vwgN8J69sl-Ppj2iBKifIAutW3nfamjNldVAa43V_XTpZ3X4N4XVUj7mQ_Q1VGwZqK7T4yX_d7V4CaDwPPyuM2arf-hcd7frljby6f1K_Uj3fPxnOXG1JLoSzp4QdEkj5qf7ltFQ789kwz_266Mfb_QgYBnhl6KQsXixWRfK10454wsSIslCaPtGizXIcSJWGZLliKiOALIz52iIekianAjbnv7eTkiftem4_GorSGmPu-WL9lpEGynRNmEyeov8Rm8JRUv"
+    mediaUrl: "/img5.jpeg",
+    bgColor: "bg-red-600 text-white"
   },
   {
-    id: "d1",
-    title: "Denbiz Signature Brew",
-    subtitle: "Rekomendasi Barista Terbaik",
-    description: "Racikan eksklusif barista kami: campuran double espresso Arabika Flores, susu segar, dan sirup rempah racikan rahasia.",
-    price: "Rp 55.000",
+    id: "d2",
+    type: "bestseller",
+    title: "Kopi Susu Gula Aren",
+    subtitle: "Rekomendasi Barista",
+    description: "Perpaduan espresso Arabika robusta, susu segar, dan sirup gula aren manis gurih alami khas Indonesia.",
+    price: "Rp 17.000",
     promoBadge: "BEST SELLER",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De"
+    mediaUrl: "/butterscotch.jpeg",
+    bgColor: "bg-amber-600 text-white"
+  },
+  {
+    id: "d3",
+    type: "image",
+    title: "Suasana Hangat & Nyaman",
+    description: "Tempat terbaik untuk berkumpul bersama teman, bekerja produktif, atau sekadar menikmati waktu santai Anda.",
+    mediaUrl: "/img2.jpeg"
+  },
+  {
+    id: "d4",
+    type: "video",
+    title: "Dedikasi Barista Terbaik Kami",
+    description: "Setiap cangkir kopi diseduh dengan presisi tinggi menggunakan biji kopi pilihan untuk menghadirkan rasa tak terlupakan.",
+    mediaUrl: "/cuplikan1.mp4"
   }
 ];
