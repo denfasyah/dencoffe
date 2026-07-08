@@ -19,41 +19,80 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
     return (
       <motion.div
         key={item.id}
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.96 }}
-        transition={{ duration: 0.4 }}
-        className="h-full flex flex-col p-5 md:p-7 gap-3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="h-full flex flex-col p-6 md:p-10 lg:p-12 gap-6 relative"
       >
-        {/* Badge + Text */}
-        <div className="space-y-1.5 flex-shrink-0">
-          <span className="inline-block px-3 py-1 rounded-full text-[10px] font-black bg-white text-neutral-900 uppercase tracking-widest shadow-sm">
+        {/* Animated Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -50, scale: 0.5 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: "spring", bounce: 0.6, duration: 0.8, delay: 0.1 }}
+          className="self-start"
+        >
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-black bg-yellow-400 text-neutral-900 uppercase tracking-widest shadow-lg shadow-yellow-500/30 border-2 border-yellow-300">
             {item.promoBadge}
           </span>
-          <h2 className="text-2xl md:text-3xl xl:text-4xl font-black leading-tight tracking-tight text-white">
+        </motion.div>
+
+        {/* Text Section */}
+        <div className="space-y-3 flex-shrink-0 z-10">
+          <motion.h2 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: "spring", bounce: 0.4, duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-5xl xl:text-6xl font-black leading-none tracking-tighter text-white drop-shadow-lg"
+          >
             {item.title}
-          </h2>
-          <p className="text-xs md:text-sm text-white/85 leading-relaxed line-clamp-2">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: "spring", bounce: 0.4, duration: 0.8, delay: 0.3 }}
+            className="text-sm md:text-base text-white/90 leading-relaxed font-medium drop-shadow-md max-w-[85%]"
+          >
             {item.description}
-          </p>
+          </motion.p>
         </div>
 
-        {/* Product Image — white card, object-contain, no distortion */}
-        <div className="flex-grow min-h-0 rounded-2xl overflow-hidden bg-white/95 shadow-xl border border-white/30 flex items-center justify-center p-3">
-          <img
+        {/* Product Image — Floating Animation */}
+        <div className="flex-grow min-h-0 flex items-center justify-center relative z-0">
+          {/* Glowing Background Effect behind the image */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-64 md:h-64 bg-white/20 blur-3xl rounded-full" />
+          
+          <motion.img
+            initial={{ opacity: 0, scale: 0.5, y: 100, rotate: -10 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              y: [0, -15, 0], 
+              rotate: 0 
+            }}
+            transition={{ 
+              y: { repeat: Infinity, duration: 3, ease: "easeInOut" },
+              opacity: { duration: 0.6 },
+              scale: { type: "spring", bounce: 0.5, duration: 0.8 },
+              rotate: { type: "spring", bounce: 0.5, duration: 0.8 }
+            }}
             src={item.mediaUrl}
             alt={item.title}
-            className="w-full h-full object-contain max-h-[200px] md:max-h-[240px] drop-shadow-md"
-            style={{ imageRendering: "auto" }}
+            className="w-auto h-full max-h-[250px] md:max-h-[350px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] z-10 relative"
           />
         </div>
 
-        {/* Price */}
+        {/* Price Tag - Bouncy entrance */}
         {item.price && (
-          <div className="flex items-baseline gap-1.5 flex-shrink-0">
-            <span className="text-white/70 text-[9px] md:text-[10px] uppercase font-bold tracking-widest">Harga:</span>
-            <span className="text-xl md:text-2xl font-black tracking-tight text-white">{item.price}</span>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 50, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ type: "spring", bounce: 0.6, duration: 0.8, delay: 0.4 }}
+            className="flex items-baseline gap-2 flex-shrink-0 bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20 self-start shadow-xl"
+          >
+            <span className="text-white/80 text-[10px] md:text-xs uppercase font-black tracking-widest">Harga Khusus</span>
+            <span className="text-3xl md:text-4xl font-black tracking-tighter text-white drop-shadow-md">{item.price}</span>
+          </motion.div>
         )}
       </motion.div>
     );
@@ -63,31 +102,44 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
     return (
       <motion.div
         key={item.id}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, scale: 1.05 }}
+        animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-        className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-8 text-white overflow-hidden"
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-10 text-white overflow-hidden"
       >
-        {/* Full-bleed background image */}
         <img 
           src={item.mediaUrl} 
           alt={item.title} 
           className="absolute inset-0 w-full h-full object-cover z-0" 
         />
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10" />
 
-        <div className="relative z-20 space-y-2">
-          <span className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-black bg-sky-500 text-white uppercase tracking-widest">
+        <div className="relative z-20 space-y-3">
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="inline-block px-3 py-1 rounded-full text-[10px] font-black bg-sky-500 text-white uppercase tracking-widest shadow-lg shadow-sky-500/30"
+          >
             Galeri Foto
-          </span>
-          <h2 className="text-2xl md:text-3xl xl:text-4xl font-black leading-tight tracking-tight">
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-3xl md:text-4xl xl:text-5xl font-black leading-none tracking-tighter drop-shadow-lg"
+          >
             {item.title}
-          </h2>
-          <p className="text-xs md:text-sm text-neutral-200 leading-relaxed max-w-md">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="text-sm md:text-base text-neutral-200 leading-relaxed max-w-md font-medium"
+          >
             {item.description}
-          </p>
+          </motion.p>
         </div>
       </motion.div>
     );
@@ -100,10 +152,9 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-        className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-8 text-white overflow-hidden"
+        transition={{ duration: 0.8 }}
+        className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-10 text-white overflow-hidden"
       >
-        {/* Full-bleed background video */}
         <video
           src={item.mediaUrl}
           autoPlay
@@ -112,19 +163,33 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10" />
 
-        <div className="relative z-20 space-y-2">
-          <span className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-black bg-teal-500 text-white uppercase tracking-widest">
+        <div className="relative z-20 space-y-3">
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="inline-block px-3 py-1 rounded-full text-[10px] font-black bg-teal-500 text-white uppercase tracking-widest shadow-lg shadow-teal-500/30"
+          >
             Cuplikan Video
-          </span>
-          <h2 className="text-2xl md:text-3xl xl:text-4xl font-black leading-tight tracking-tight">
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-3xl md:text-4xl xl:text-5xl font-black leading-none tracking-tighter drop-shadow-lg"
+          >
             {item.title}
-          </h2>
-          <p className="text-xs md:text-sm text-neutral-200 leading-relaxed max-w-md">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="text-sm md:text-base text-neutral-200 leading-relaxed max-w-md font-medium"
+          >
             {item.description}
-          </p>
+          </motion.p>
         </div>
       </motion.div>
     );

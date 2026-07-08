@@ -42,7 +42,7 @@ export default function Footer() {
       <footer className="bg-primary text-on-primary py-16 px-gutter relative">
         <div className="max-w-container-max-width mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2">
-            <Image src="/logo2.png" alt="Logo Kedai Kopi Bang Jenggot" width={100} height={100} />
+            <Image src="/logo.png" alt="Logo Kedai Kopi Bang Jenggot" width={100} height={100} />
             <p className="text-on-primary/60 max-w-md mb-6 mt-5 leading-relaxed text-sm">
               {contactData.footerDescription}
             </p>
