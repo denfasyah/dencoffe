@@ -98,16 +98,13 @@ export default function TestimonialsSlider() {
                           &ldquo;{item.content}&rdquo;
                         </p>
                       </div>
-                      <div className="flex items-center gap-3 border-t border-on-primary/10 pt-3">
-                        <img
-                          className="w-10 h-10 rounded-full object-cover"
-                          src={item.avatarUrl}
-                          alt={item.name}
-                          loading="lazy"
-                        />
-                        <div>
-                          <p className="font-bold text-xs">{item.name}</p>
-                          <p className="text-[10px] opacity-60">{item.role}</p>
+                      <div className="flex flex-col border-t border-on-primary/10 pt-3">
+                        <p className="font-bold text-xs">{item.name}</p>
+                        <div className="flex items-center gap-1 mt-1">
+                          <svg className="w-3.5 h-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L14.85 9.15L22 12L14.85 14.85L12 22L9.15 14.85L2 12L9.15 9.15L12 2Z" />
+                          </svg>
+                          <span className="text-[10px] font-semibold text-amber-400 tracking-wider uppercase">{item.role}</span>
                         </div>
                       </div>
                     </motion.div>

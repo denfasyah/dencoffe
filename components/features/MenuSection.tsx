@@ -7,8 +7,8 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-type Category = "Semua" | "Makanan" | "Non Coffe" | "Coffe";
-const TABS: Category[] = ["Semua", "Coffe", "Non Coffe", "Makanan"];
+type Category = "Semua" | "Coffee" | "Non Coffee" | "Tea" | "Food" | "Espresso Base" | "Filter Coffee";
+const TABS: Category[] = ["Semua", "Coffee", "Non Coffee", "Tea", "Food", "Espresso Base", "Filter Coffee"];
 const HOMEPAGE_LIMIT = 6;
 
 export default function MenuSection() {

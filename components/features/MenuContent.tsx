@@ -7,8 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 
-type Category = "Semua" | "Coffe" | "Non Coffe" | "Makanan";
-const TABS: Category[] = ["Semua", "Coffe", "Non Coffe", "Makanan"];
+type Category = "Semua" | "Coffee" | "Non Coffee" | "Tea" | "Food" | "Espresso Base" | "Filter Coffee";
+const TABS: Category[] = ["Semua", "Coffee", "Non Coffee", "Tea", "Food", "Espresso Base", "Filter Coffee"];
 const PER_PAGE = 6;
 
 export default function MenuContent() {

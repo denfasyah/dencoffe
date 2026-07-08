@@ -4,289 +4,324 @@ export interface MenuItem {
   price: string;
   description: string;
   imageUrl: string;
-  category: "Makanan" | "Non Coffe" | "Coffe";
-  subCategory?: string; // e.g. "Tea", "Manual Brew V60", "Coffee"
+  category: "Coffee" | "Non Coffee" | "Tea" | "Food" | "Espresso Base" | "Filter Coffee";
+  subCategory?: string;
 }
 
 export const menuData: MenuItem[] = [
   // === COFFEE ===
   {
     id: "c1",
-    name: "Brown Sugar",
-    price: "Rp 15.000",
-    description: "Kopi susu espresso premium dengan sirup gula aren asli yang manis gurih alami.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Coffee"
+    name: "Kopi Tubruk Robusta",
+    price: "Rp 10.000",
+    description: "Kopi hitam klasik seduhan tubruk dengan biji Robusta pilihan yang pekat dan mantap.",
+    imageUrl: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c2",
-    name: "Cappuccino",
+    name: "Kopi Tubruk Arabika",
     price: "Rp 15.000",
-    description: "Kombinasi klasik double espresso, steamed milk, dan foam tebal lembut di atasnya.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Coffee"
+    description: "Seduhan kopi tubruk dengan biji Arabika pilihan yang kaya aroma dan tingkat keasaman lembut.",
+    imageUrl: "https://images.unsplash.com/photo-1606791405792-1004f1718d0c?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c3",
-    name: "Americano",
-    price: "Rp 15.000",
-    description: "Espresso shot premium yang dilarutkan dengan air panas menghasilkan cita rasa kopi hitam murni.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Coffee"
+    name: "Kopi Susu Gula Aren",
+    price: "Rp 17.000",
+    description: "Perpaduan espresso, susu segar, dan sirup gula aren manis gurih alami khas Indonesia.",
+    imageUrl: "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c4",
-    name: "Hazelnut",
-    price: "Rp 18.000",
-    description: "Espresso dengan paduan susu segar hangat dan sirup rasa hazelnut panggang aromatik.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Coffee"
+    name: "Cappucino",
+    price: "Rp 20.000",
+    description: "Kombinasi seimbang espresso pekat, susu hangat (steamed milk), dan busa susu yang tebal.",
+    imageUrl: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c5",
-    name: "Vanilla Latte",
-    price: "Rp 18.000",
-    description: "Latte lembut beraroma vanila premium yang manis, menenangkan, dan seimbang.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Coffee"
+    name: "Coffee Lemon",
+    price: "Rp 20.000",
+    description: "Kombinasi segar espresso dingin dengan perasan lemon asam-manis yang menyegarkan dahaga.",
+    imageUrl: "https://images.unsplash.com/photo-1513530534585-c7b1394c6d51?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c6",
-    name: "Coffee Lemon",
-    price: "Rp 18.000",
-    description: "Sensasi unik kopi espresso segar berpadu dengan sirup lemon masam segar dan soda dingin.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBO9WZQWO9Lb9QT7o-9-1objHAr6rxbctlrxXhnI86mOgEx9XFtmo9_MohW8P0UirGGrs8PvYOFDkIYBvzLUicxbt7rLRmhmpRrSmvSReZgOqHRmBJSUT_w89ILxmCSlthZDbUd3sfWJGrmSL48NQe_G4ik9MM1RQv-3kT3z9Qz_VC7X-xCVKrPmHw7328lCTM-LhuAAA66Dil34QucusGi718nijvSntq7lSe8Y2QqzKvOMJKDKSmt7nIanyRpuMPNp6C3OtzkVInT",
-    category: "Coffe",
-    subCategory: "Coffee"
+    name: "Coffee Latte",
+    price: "Rp 20.000",
+    description: "Espresso dengan paduan susu segar hangat yang melimpah dan lapisan foam tipis di atasnya.",
+    imageUrl: "https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c7",
     name: "Caramel Latte",
-    price: "Rp 18.000",
-    description: "Espresso premium dengan susu segar dan siraman sirup karamel gurih nan manis melimpah.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBO9WZQWO9Lb9QT7o-9-1objHAr6rxbctlrxXhnI86mOgEx9XFtmo9_MohW8P0UirGGrs8PvYOFDkIYBvzLUicxbt7rLRmhmpRrSmvSReZgOqHRmBJSUT_w89ILxmCSlthZDbUd3sfWJGrmSL48NQe_G4ik9MM1RQv-3kT3z9Qz_VC7X-xCVKrPmHw7328lCTM-LhuAAA66Dil34QucusGi718nijvSntq7lSe8Y2QqzKvOMJKDKSmt7nIanyRpuMPNp6C3OtzkVInT",
-    category: "Coffe",
-    subCategory: "Coffee"
+    price: "Rp 20.000",
+    description: "Coffee latte lembut dengan tambahan sirup karamel gurih nan manis aromatik.",
+    imageUrl: "https://images.unsplash.com/photo-1595434066389-0dc5a6c5f418?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c8",
-    name: "Special Blend",
-    price: "Rp 18.000",
-    description: "Racikan kopi spesial house blend khas Denbiz dengan Aftertaste manis cokelat pekat.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Coffee"
+    name: "Vanilla Latte",
+    price: "Rp 20.000",
+    description: "Latte creamy berpadu dengan sirup vanilla premium yang harum menenangkan.",
+    imageUrl: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c9",
-    name: "Honey Long Black",
-    price: "Rp 18.000",
-    description: "Kopi hitam Long Black pekat dengan tambahan pemanis madu alami segar.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Coffee"
+    name: "Hazelnut",
+    price: "Rp 20.000",
+    description: "Minuman espresso bersusu dengan tambahan sirup kacang hazelnut yang gurih legit.",
+    imageUrl: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c10",
-    name: "Red Velvet",
-    price: "Rp 18.000",
-    description: "Kopi dengan sensasi rasa manis kue Red Velvet beludru merah yang lembut di lidah.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCNoqyF_S1ra7ZKsBLZn8n1pbLTeCA201R8jEaIvFBPwrARXHzKaAthXkUKnyQtKPEtvAQ9dPHdDCKyuiWOqfMrbqK43sWcRvcUHSYmtoGVHV711FBKmcK7fGUdMgmzQbDVO6v8Y-vFefVqKITQkveKhm0Vi_gHneN-YXr1CJJb6UOO36ksQw3CniqcwyVh9P4EWPqU4N10GqiN9naKAJMdsXVdh-WUL2Dba9reOOxbIMNwVZDgDyzmWmmcVaNaSR0AXPUR4zWZb1NA",
-    category: "Coffe",
-    subCategory: "Coffee"
+    name: "Klepon / Pandan",
+    price: "Rp 20.000",
+    description: "Sensasi kopi susu unik dengan rasa gurih pandan kelapa layaknya kue tradisional klepon.",
+    imageUrl: "https://images.unsplash.com/photo-1628088062854-d1870b4553da?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c11",
-    name: "Klepon Coffee",
-    price: "Rp 18.000",
-    description: "Kopi susu dengan cita rasa pandan, santan kelapa, dan saus gula aren layaknya kue klepon tradisional.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBO9WZQWO9Lb9QT7o-9-1objHAr6rxbctlrxXhnI86mOgEx9XFtmo9_MohW8P0UirGGrs8PvYOFDkIYBvzLUicxbt7rLRmhmpRrSmvSReZgOqHRmBJSUT_w89ILxmCSlthZDbUd3sfWJGrmSL48NQe_G4ik9MM1RQv-3kT3z9Qz_VC7X-xCVKrPmHw7328lCTM-LhuAAA66Dil34QucusGi718nijvSntq7lSe8Y2QqzKvOMJKDKSmt7nIanyRpuMPNp6C3OtzkVInT",
-    category: "Coffe",
-    subCategory: "Coffee"
+    name: "Butterscotch",
+    price: "Rp 20.000",
+    description: "Kopi susu dengan rasa manis mentega karamel panggang (butterscotch) yang tebal.",
+    imageUrl: "https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
   {
     id: "c12",
-    name: "Coffee Beer",
-    price: "Rp 15.000",
-    description: "Minuman kopi bersoda non-alkohol yang menyegarkan dengan sentuhan manis yang seimbang.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBO9WZQWO9Lb9QT7o-9-1objHAr6rxbctlrxXhnI86mOgEx9XFtmo9_MohW8P0UirGGrs8PvYOFDkIYBvzLUicxbt7rLRmhmpRrSmvSReZgOqHRmBJSUT_w89ILxmCSlthZDbUd3sfWJGrmSL48NQe_G4ik9MM1RQv-3kT3z9Qz_VC7X-xCVKrPmHw7328lCTM-LhuAAA66Dil34QucusGi718nijvSntq7lSe8Y2QqzKvOMJKDKSmt7nIanyRpuMPNp6C3OtzkVInT",
-    category: "Coffe",
-    subCategory: "Coffee"
+    name: "Red Velvet",
+    price: "Rp 20.000",
+    description: "Perpaduan kopi dengan rasa manis beludru merah yang lembut dan creamy.",
+    imageUrl: "https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
+  },
+  {
+    id: "c13",
+    name: "Special Blend",
+    price: "Rp 22.000",
+    description: "Racikan kopi spesial house blend andalan Kopi Bang Jenggot dengan cita rasa khas.",
+    imageUrl: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop",
+    category: "Coffee"
   },
 
-  // === MANUAL BREW V60 ===
+  // === NON COFFEE ===
   {
-    id: "mb1",
-    name: "Gayo Wine",
-    price: "Rp 20.000",
-    description: "Kopi V60 specialty beans dengan fermentasi winey alami beraroma anggur pekat masam segar.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Manual Brew V60"
+    id: "nc1",
+    name: "Matcha Latte",
+    price: "Rp 18.000",
+    description: "Bubuk teh hijau Jepang premium asli diseduh dengan susu segar yang creamy.",
+    imageUrl: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?q=80&w=600&auto=format&fit=crop",
+    category: "Non Coffee"
   },
   {
-    id: "mb2",
-    name: "Gayo Honey",
-    price: "Rp 20.000",
-    description: "Single origin dengan proses Honey yang manis alami dan keasaman buah yang lembut.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Manual Brew V60"
+    id: "nc2",
+    name: "Chocolatte",
+    price: "Rp 18.000",
+    description: "Minuman cokelat pekat berkualitas tinggi disajikan hangat atau dingin dengan susu segar.",
+    imageUrl: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=600&auto=format&fit=crop",
+    category: "Non Coffee"
   },
   {
-    id: "mb3",
-    name: "Puntang Wine",
-    price: "Rp 20.000",
-    description: "Kopi Gunung Puntang Jawa Barat hasil fermentasi wine yang wangi buah berry dan manis pekat.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Manual Brew V60"
+    id: "nc3",
+    name: "Ocean Blue",
+    price: "Rp 18.000",
+    description: "Minuman soda citrus biru yang menyegarkan dengan paduan rasa masam manis.",
+    imageUrl: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=600&auto=format&fit=crop",
+    category: "Non Coffee"
   },
   {
-    id: "mb4",
-    name: "Kerinci",
-    price: "Rp 20.000",
-    description: "Biji kopi single origin asal Kerinci dengan notes sitrus segar dan clean aftertaste.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKfSHaQdAnD3Vzq3z2jSly1_FZ0UkS4V8x26WBT2S6ovIAntgRG_VG469erkjML0IAsh_PqRu1k0YNQw5lvpooPejOBloM-nzkkTHbgLy8cXm_fPcrYa4p-3gLaKewUeJaDemPATLap4XashDDB9oRtUBoDsPdwMNgo6wmsQDWHmXGqI8wM1U0X-hpJHhVnhJQbKBB434tGHOxGB8yp6-imwpzdiCz24UxiYO1jGvcqxHfD0axAW8z2Od4NhYHPxlw4truUt3Ah5De",
-    category: "Coffe",
-    subCategory: "Manual Brew V60"
+    id: "nc4",
+    name: "Wedang Jahe",
+    price: "Rp 12.000",
+    description: "Seduhan air jahe tradisional yang hangat berkhasiat meringankan tubuh.",
+    imageUrl: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=600&auto=format&fit=crop",
+    category: "Non Coffee"
+  },
+  {
+    id: "nc5",
+    name: "Red Velvet",
+    price: "Rp 18.000",
+    description: "Minuman susu creamy non-kopi dengan cita rasa kue red velvet merah beludru.",
+    imageUrl: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=600&auto=format&fit=crop",
+    category: "Non Coffee"
   },
 
   // === TEA ===
   {
     id: "t1",
     name: "Ice Tea",
-    price: "Rp 7.000",
-    description: "Es teh manis jasmine segar pelepas dahaga klasik.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCNoqyF_S1ra7ZKsBLZn8n1pbLTeCA201R8jEaIvFBPwrARXHzKaAthXkUKnyQtKPEtvAQ9dPHdDCKyuiWOqfMrbqK43sWcRvcUHSYmtoGVHV711FBKmcK7fGUdMgmzQbDVO6v8Y-vFefVqKITQkveKhm0Vi_gHneN-YXr1CJJb6UOO36ksQw3CniqcwyVh9P4EWPqU4N10GqiN9naKAJMdsXVdh-WUL2Dba9reOOxbIMNwVZDgDyzmWmmcVaNaSR0AXPUR4zWZb1NA",
-    category: "Non Coffe",
-    subCategory: "Tea"
+    price: "Rp 10.000",
+    description: "Es teh manis melati segar pelepas dahaga yang klasik.",
+    imageUrl: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=600&auto=format&fit=crop",
+    category: "Tea"
   },
   {
     id: "t2",
     name: "Lychee Tea",
     price: "Rp 15.000",
-    description: "Es teh manis rasa buah leci segar dengan buah leci utuh di dalamnya.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCNoqyF_S1ra7ZKsBLZn8n1pbLTeCA201R8jEaIvFBPwrARXHzKaAthXkUKnyQtKPEtvAQ9dPHdDCKyuiWOqfMrbqK43sWcRvcUHSYmtoGVHV711FBKmcK7fGUdMgmzQbDVO6v8Y-vFefVqKITQkveKhm0Vi_gHneN-YXr1CJJb6UOO36ksQw3CniqcwyVh9P4EWPqU4N10GqiN9naKAJMdsXVdh-WUL2Dba9reOOxbIMNwVZDgDyzmWmmcVaNaSR0AXPUR4zWZb1NA",
-    category: "Non Coffe",
-    subCategory: "Tea"
+    description: "Es teh rasa buah leci manis segar yang dilengkapi dengan buah leci asli.",
+    imageUrl: "https://images.unsplash.com/photo-1595981267035-7b04ec824ee7?q=80&w=600&auto=format&fit=crop",
+    category: "Tea"
   },
   {
     id: "t3",
     name: "Lemon Tea",
     price: "Rp 15.000",
-    description: "Es teh dengan perasan air lemon segar yang kaya vitamin C dan menyegarkan.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCNoqyF_S1ra7ZKsBLZn8n1pbLTeCA201R8jEaIvFBPwrARXHzKaAthXkUKnyQtKPEtvAQ9dPHdDCKyuiWOqfMrbqK43sWcRvcUHSYmtoGVHV711FBKmcK7fGUdMgmzQbDVO6v8Y-vFefVqKITQkveKhm0Vi_gHneN-YXr1CJJb6UOO36ksQw3CniqcwyVh9P4EWPqU4N10GqiN9naKAJMdsXVdh-WUL2Dba9reOOxbIMNwVZDgDyzmWmmcVaNaSR0AXPUR4zWZb1NA",
-    category: "Non Coffe",
-    subCategory: "Tea"
-  },
-  {
-    id: "t4",
-    name: "Honey Lemon Tea",
-    price: "Rp 15.000",
-    description: "Paduan es teh, lemon segar, dan madu manis alami berkhasiat tinggi.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCNoqyF_S1ra7ZKsBLZn8n1pbLTeCA201R8jEaIvFBPwrARXHzKaAthXkUKnyQtKPEtvAQ9dPHdDCKyuiWOqfMrbqK43sWcRvcUHSYmtoGVHV711FBKmcK7fGUdMgmzQbDVO6v8Y-vFefVqKITQkveKhm0Vi_gHneN-YXr1CJJb6UOO36ksQw3CniqcwyVh9P4EWPqU4N10GqiN9naKAJMdsXVdh-WUL2Dba9reOOxbIMNwVZDgDyzmWmmcVaNaSR0AXPUR4zWZb1NA",
-    category: "Non Coffe",
-    subCategory: "Tea"
-  },
-
-  // === NON-COFFEE ===
-  {
-    id: "nc1",
-    name: "Matcha Latte",
-    price: "Rp 15.000",
-    description: "Bubuk matcha premium Jepang berpadu dengan susu segar menghasilkan rasa manis lembut beraroma teh hijau.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuD6Mu5q5vwgN8J69sl-Ppj2iBKifIAutW3nfamjNldVAa43V_XTpZ3X4N4XVUj7mQ_Q1VGwZqK7T4yX_d7V4CaDwPPyuM2arf-hcd7frljby6f1K_Uj3fPxnOXG1JLoSzp4QdEkj5qf7ltFQ789kwz_266Mfb_QgYBnhl6KQsXixWRfK10454wsSIslCaPtGizXIcSJWGZLliKiOALIz52iIekianAjbnv7eTkiftem4_GorSGmPu-WL9lpEGynRNmEyeov8Rm8JRUv",
-    category: "Non Coffe",
-    subCategory: "Non-Coffee"
-  },
-  {
-    id: "nc2",
-    name: "Chocolatte",
-    price: "Rp 15.000",
-    description: "Minuman cokelat premium pekat yang disajikan creamy dengan steamed milk lembut.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuD6Mu5q5vwgN8J69sl-Ppj2iBKifIAutW3nfamjNldVAa43V_XTpZ3X4N4XVUj7mQ_Q1VGwZqK7T4yX_d7V4CaDwPPyuM2arf-hcd7frljby6f1K_Uj3fPxnOXG1JLoSzp4QdEkj5qf7ltFQ789kwz_266Mfb_QgYBnhl6KQsXixWRfK10454wsSIslCaPtGizXIcSJWGZLliKiOALIz52iIekianAjbnv7eTkiftem4_GorSGmPu-WL9lpEGynRNmEyeov8Rm8JRUv",
-    category: "Non Coffe",
-    subCategory: "Non-Coffee"
-  },
-  {
-    id: "nc3",
-    name: "Ocean Blue",
-    price: "Rp 18.000",
-    description: "Minuman soda biru dengan sirup jeruk citrus curacao yang masam, manis, dan menyegarkan.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCNoqyF_S1ra7ZKsBLZn8n1pbLTeCA201R8jEaIvFBPwrARXHzKaAthXkUKnyQtKPEtvAQ9dPHdDCKyuiWOqfMrbqK43sWcRvcUHSYmtoGVHV711FBKmcK7fGUdMgmzQbDVO6v8Y-vFefVqKITQkveKhm0Vi_gHneN-YXr1CJJb6UOO36ksQw3CniqcwyVh9P4EWPqU4N10GqiN9naKAJMdsXVdh-WUL2Dba9reOOxbIMNwVZDgDyzmWmmcVaNaSR0AXPUR4zWZb1NA",
-    category: "Non Coffe",
-    subCategory: "Non-Coffee"
+    description: "Perpaduan rasa teh berkualitas dengan kesegaran jeruk lemon alami.",
+    imageUrl: "https://images.unsplash.com/photo-1529258283582-953e7179ed0a?q=80&w=600&auto=format&fit=crop",
+    category: "Tea"
   },
 
   // === FOOD ===
   {
     id: "f1",
-    name: "Dimsum (Original / Mentai)",
-    price: "Rp 12.000",
-    description: "Dimsum ayam kukus premium yang gurih disajikan dengan saus original atau saus mentai creamy pedas.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCc2WTstdLZ5_6akiyNA-gjeWnYod5PznZFtHzdSnyE7J3vnig1lT0-RypWb6rSxbhUhLB8IelRXJRDLoDpTv944zeH84oMar2yG3GabWgz-jizTSAYMWspT8AZrOK3t0VRJnlGVZ9rSITaP9SP2HMU0s7o-aroBLKEVwOF_rpLUrZRMB1DUu9E0r15LXuQO-jR0R4Vtj1rz0tAF2wuHu4bW1d-ZkGoFQBQoybc9wFLyFzct2B6_Z93byIDM3ABa-Gjj6cley0n4GN-",
-    category: "Makanan"
+    name: "Kentang Goreng Original",
+    price: "Rp 15.000",
+    description: "Kentang goreng renyah bumbu garam gurih klasik cocok untuk cemilan nongkrong.",
+    imageUrl: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=600&auto=format&fit=crop",
+    category: "Food"
   },
   {
     id: "f2",
-    name: "French Fries (Original)",
-    price: "Rp 10.000",
-    description: "Kentang goreng renyah bumbu garam gurih klasik.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCc2WTstdLZ5_6akiyNA-gjeWnYod5PznZFtHzdSnyE7J3vnig1lT0-RypWb6rSxbhUhLB8IelRXJRDLoDpTv944zeH84oMar2yG3GabWgz-jizTSAYMWspT8AZrOK3t0VRJnlGVZ9rSITaP9SP2HMU0s7o-aroBLKEVwOF_rpLUrZRMB1DUu9E0r15LXuQO-jR0R4Vtj1rz0tAF2wuHu4bW1d-ZkGoFQBQoybc9wFLyFzct2B6_Z93byIDM3ABa-Gjj6cley0n4GN-",
-    category: "Makanan"
+    name: "Kentang Goreng Saus Keju",
+    price: "Rp 18.000",
+    description: "Kentang goreng gurih renyah disajikan dengan saus keju cheddar lumer.",
+    imageUrl: "https://images.unsplash.com/photo-1585109649139-366815a0d713?q=80&w=600&auto=format&fit=crop",
+    category: "Food"
   },
   {
     id: "f3",
-    name: "Indomie (Goreng / Rebus)",
-    price: "Rp 12.000",
-    description: "Mie legendaris favorit disajikan goreng kering atau rebus hangat berkuah gurih dengan telur mata sapi dan sayuran.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCc2WTstdLZ5_6akiyNA-gjeWnYod5PznZFtHzdSnyE7J3vnig1lT0-RypWb6rSxbhUhLB8IelRXJRDLoDpTv944zeH84oMar2yG3GabWgz-jizTSAYMWspT8AZrOK3t0VRJnlGVZ9rSITaP9SP2HMU0s7o-aroBLKEVwOF_rpLUrZRMB1DUu9E0r15LXuQO-jR0R4Vtj1rz0tAF2wuHu4bW1d-ZkGoFQBQoybc9wFLyFzct2B6_Z93byIDM3ABa-Gjj6cley0n4GN-",
-    category: "Makanan"
+    name: "Roti Bakar Coklat",
+    price: "Rp 15.000",
+    description: "Roti bakar empuk berselimut coklat premium manis melimpah.",
+    imageUrl: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=600&auto=format&fit=crop",
+    category: "Food"
   },
   {
     id: "f4",
-    name: "Croffle (Original / Saus Caramel)",
-    price: "Rp 12.000",
-    description: "Croissant waffle manis renyah dengan siraman karamel wangi melimpah.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuDVHGHqwJFrGnPGR7h_og9M3XAmh0rOCe-B43qU9hiUXv6I22DolQK4FFn0zX7ZuPscWeX9Qd0EviWJtVtqYt-ZTA-N7g0W_EXZjZaxpO1ATQMIQl0KtmjlleQ68df536KVUIdZVbiM4N3PEF8MnvHrDnKKAfRZoo5R_f4vsoSOaRbnHoRnPLBFJh9MBSrAqOIrenJNKs5hx_sNiA4HR85Ih2xH6XQvGZDbhnrZ07iiKT2jivE5sOIXo534r7U_tHAxal_WtS-J34GX",
-    category: "Makanan"
+    name: "Roti Bakar Keju",
+    price: "Rp 18.000",
+    description: "Roti bakar gurih dengan taburan keju cheddar parut melimpah di atasnya.",
+    imageUrl: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=600&auto=format&fit=crop",
+    category: "Food"
   },
   {
     id: "f5",
-    name: "Cheese Cassava (Original)",
-    price: "Rp 12.000",
-    description: "Singkong keju lembut renyah bertabur keju cheddar parut melimpah.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCc2WTstdLZ5_6akiyNA-gjeWnYod5PznZFtHzdSnyE7J3vnig1lT0-RypWb6rSxbhUhLB8IelRXJRDLoDpTv944zeH84oMar2yG3GabWgz-jizTSAYMWspT8AZrOK3t0VRJnlGVZ9rSITaP9SP2HMU0s7o-aroBLKEVwOF_rpLUrZRMB1DUu9E0r15LXuQO-jR0R4Vtj1rz0tAF2wuHu4bW1d-ZkGoFQBQoybc9wFLyFzct2B6_Z93byIDM3ABa-Gjj6cley0n4GN-",
-    category: "Makanan"
+    name: "Indomie (Rebus/Goreng)",
+    price: "Rp 18.000",
+    description: "Mie instan favorit disajikan rebus hangat dengan kuah lezat atau goreng gurih.",
+    imageUrl: "https://images.unsplash.com/photo-1612966608967-312ba5978db6?q=80&w=600&auto=format&fit=crop",
+    category: "Food"
   },
   {
     id: "f6",
-    name: "Burger",
-    price: "Rp 12.000",
-    description: "Roti burger empuk diisi patty daging panggang juicy, keju, selada, dan saus lezat.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCc2WTstdLZ5_6akiyNA-gjeWnYod5PznZFtHzdSnyE7J3vnig1lT0-RypWb6rSxbhUhLB8IelRXJRDLoDpTv944zeH84oMar2yG3GabWgz-jizTSAYMWspT8AZrOK3t0VRJnlGVZ9rSITaP9SP2HMU0s7o-aroBLKEVwOF_rpLUrZRMB1DUu9E0r15LXuQO-jR0R4Vtj1rz0tAF2wuHu4bW1d-ZkGoFQBQoybc9wFLyFzct2B6_Z93byIDM3ABa-Gjj6cley0n4GN-",
-    category: "Makanan"
+    name: "Dimsum",
+    price: "Rp 18.000",
+    description: "Dimsum ayam kukus premium yang lembut dan padat, disajikan hangat dengan chili oil.",
+    imageUrl: "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=600&auto=format&fit=crop",
+    category: "Food"
   },
   {
     id: "f7",
-    name: "Hotdog",
-    price: "Rp 12.000",
-    description: "Roti hotdog panjang isi sosis sapi panggang premium dengan mayones dan saus mustard segar.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCc2WTstdLZ5_6akiyNA-gjeWnYod5PznZFtHzdSnyE7J3vnig1lT0-RypWb6rSxbhUhLB8IelRXJRDLoDpTv944zeH84oMar2yG3GabWgz-jizTSAYMWspT8AZrOK3t0VRJnlGVZ9rSITaP9SP2HMU0s7o-aroBLKEVwOF_rpLUrZRMB1DUu9E0r15LXuQO-jR0R4Vtj1rz0tAF2wuHu4bW1d-ZkGoFQBQoybc9wFLyFzct2B6_Z93byIDM3ABa-Gjj6cley0n4GN-",
-    category: "Makanan"
+    name: "Singkong Original",
+    price: "Rp 15.000",
+    description: "Singkong goreng tradisional bumbu rempah dengan tekstur mekar yang gurih empuk.",
+    imageUrl: "https://images.unsplash.com/photo-1596797038530-2c107229654b?q=80&w=600&auto=format&fit=crop",
+    category: "Food"
   },
   {
     id: "f8",
-    name: "French Fries (Cheese)",
-    price: "Rp 12.000",
-    description: "Kentang goreng renyah yang dilumuri saus keju cheddar creamy meleleh melimpah.",
-    imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCc2WTstdLZ5_6akiyNA-gjeWnYod5PznZFtHzdSnyE7J3vnig1lT0-RypWb6rSxbhUhLB8IelRXJRDLoDpTv944zeH84oMar2yG3GabWgz-jizTSAYMWspT8AZrOK3t0VRJnlGVZ9rSITaP9SP2HMU0s7o-aroBLKEVwOF_rpLUrZRMB1DUu9E0r15LXuQO-jR0R4Vtj1rz0tAF2wuHu4bW1d-ZkGoFQBQoybc9wFLyFzct2B6_Z93byIDM3ABa-Gjj6cley0n4GN-",
-    category: "Makanan"
+    name: "Singkong Keju",
+    price: "Rp 18.000",
+    description: "Singkong empuk gurih bertabur keju parut gurih asin di atasnya.",
+    imageUrl: "https://images.unsplash.com/photo-1596797038530-2c107229654b?q=80&w=600&auto=format&fit=crop",
+    category: "Food"
+  },
+  {
+    id: "f9",
+    name: "Cheese Burger",
+    price: "Rp 18.000",
+    description: "Burger dengan roti empuk, beef patty panggang juicy, saus lezat, dan keju lumer.",
+    imageUrl: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=600&auto=format&fit=crop",
+    category: "Food"
+  },
+
+  // === ESPRESSO BASE ===
+  {
+    id: "e1",
+    name: "Americano Robusta",
+    price: "Rp 17.000",
+    description: "Espresso robusta premium dilarutkan air menghasilkan kopi hitam mantap rasa tegas.",
+    imageUrl: "https://images.unsplash.com/photo-1551046710-755f61ba5119?q=80&w=600&auto=format&fit=crop",
+    category: "Espresso Base"
+  },
+  {
+    id: "e2",
+    name: "Americano Arabika",
+    price: "Rp 20.000",
+    description: "Espresso arabika diseduh air dengan keasaman segar dan aroma harum.",
+    imageUrl: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop",
+    category: "Espresso Base"
+  },
+  {
+    id: "e3",
+    name: "Americano Peach Lime",
+    price: "Rp 20.000",
+    description: "Americano segar dengan tambahan sirup peach manis wangi dan kesegaran jeruk nipis.",
+    imageUrl: "https://images.unsplash.com/photo-1513530534585-c7b1394c6d51?q=80&w=600&auto=format&fit=crop",
+    category: "Espresso Base"
+  },
+  {
+    id: "e4",
+    name: "Americano Cranberry",
+    price: "Rp 20.000",
+    description: "Americano dingin berpadu sensasi buah cranberry asam manis segar yang eksotis.",
+    imageUrl: "https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=80&w=600&auto=format&fit=crop",
+    category: "Espresso Base"
+  },
+  {
+    id: "e5",
+    name: "Americano Lychee",
+    price: "Rp 20.000",
+    description: "Kopi hitam americano berpadu dengan sirup leci manis buah segar.",
+    imageUrl: "https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=80&w=600&auto=format&fit=crop",
+    category: "Espresso Base"
+  },
+  {
+    id: "e6",
+    name: "Americano Blueberry",
+    price: "Rp 20.000",
+    description: "Kombinasi unik kopi hitam dengan cita rasa buah blueberry yang segar manis beraroma.",
+    imageUrl: "https://images.unsplash.com/photo-1497515114629-f71d768fd07c?q=80&w=600&auto=format&fit=crop",
+    category: "Espresso Base"
+  },
+
+  // === FILTER COFFEE ===
+  {
+    id: "fc1",
+    name: "Arabica",
+    price: "Rp 20.000",
+    description: "Kopi filter seduh manual (manual brew) dengan biji kopi single origin Arabika pilihan.",
+    imageUrl: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop",
+    category: "Filter Coffee"
+  },
+  {
+    id: "fc2",
+    name: "Special Arabica",
+    price: "Rp 25.000",
+    description: "Kopi filter spesial dengan biji kopi premium mikro-lot kurasi musiman barista kami.",
+    imageUrl: "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600&auto=format&fit=crop",
+    category: "Filter Coffee"
   }
 ];

@@ -15,12 +15,12 @@ import {
   Globe,
   Coffee,
   Sparkles,
-  Utensils
+  Utensils,
+  Heart
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { displayBoardData } from "@/data/display";
 import { menuData } from "@/data/menu";
-import { contactData } from "@/data/contact";
 
 const InstagramIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -33,18 +33,13 @@ export default function DisplayPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  // Total slides is 4:
-  // Slide 0: Promo (from displayBoardData[0])
-  // Slide 1: Best Seller (from displayBoardData[1])
-  // Slide 2: Menu Lengkap List
-  // Slide 3: Info Cafe
-  const totalSlides = 4;
+  const totalSlides = 5;
 
   useEffect(() => {
     if (!isPlaying) return;
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-    }, 12000); // 12 seconds auto-play so users have ample time to read the menu list
+    }, 8000); // Rotate every 8 seconds
 
     return () => clearInterval(interval);
   }, [isPlaying]);
@@ -57,118 +52,106 @@ export default function DisplayPage() {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
   };
 
-  // Group menu data for Slide 3
-  const coffees = menuData.filter((item) => item.category === "Coffe" && item.subCategory === "Coffee");
-  const manualBrews = menuData.filter((item) => item.category === "Coffe" && item.subCategory === "Manual Brew V60");
-  const teas = menuData.filter((item) => item.category === "Non Coffe" && item.subCategory === "Tea");
-  const nonCoffees = menuData.filter((item) => item.category === "Non Coffe" && item.subCategory === "Non-Coffee");
-  const foods = menuData.filter((item) => item.category === "Makanan");
+  // Group menu data by categories exactly matching the image
+  const coffeeItems = menuData.filter((item) => item.category === "Coffee");
+  const nonCoffeeItems = menuData.filter((item) => item.category === "Non Coffee");
+  const teaItems = menuData.filter((item) => item.category === "Tea");
+  const foodItems = menuData.filter((item) => item.category === "Food");
+  const espressoBaseItems = menuData.filter((item) => item.category === "Espresso Base");
+  const filterCoffeeItems = menuData.filter((item) => item.category === "Filter Coffee");
 
-  // Aesthetic Cafe Interior Background URL
-  const cafeBgUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuCNoqyF_S1ra7ZKsBLZn8n1pbLTeCA201R8jEaIvFBPwrARXHzKaAthXkUKnyQtKPEtvAQ9dPHdDCKyuiWOqfMrbqK43sWcRvcUHSYmtoGVHV711FBKmcK7fGUdMgmzQbDVO6v8Y-vFefVqKITQkveKhm0Vi_gHneN-YXr1CJJb6UOO36ksQw3CniqcwyVh9P4EWPqU4N10GqiN9naKAJMdsXVdh-WUL2Dba9reOOxbIMNwVZDgDyzmWmmcVaNaSR0AXPUR4zWZb1NA";
+  // Colors and details for the left dynamic slides
+  const slideStyles = [
+    { bg: "bg-[#FFF5EB]", border: "border-orange-200", accent: "text-orange-600", badgeBg: "bg-orange-100 text-orange-800" }, // Promo 1
+    { bg: "bg-[#FFFBEB]", border: "border-amber-200", accent: "text-amber-600", badgeBg: "bg-amber-100 text-amber-800" },   // Best Seller
+    { bg: "bg-[#F0F9FF]", border: "border-sky-200", accent: "text-sky-600", badgeBg: "bg-sky-100 text-sky-800" },       // WiFi Info
+    { bg: "bg-[#ECFDF5]", border: "border-emerald-200", accent: "text-emerald-600", badgeBg: "bg-emerald-100 text-emerald-800" }, // Hours Info
+    { bg: "bg-[#FDF4FF]", border: "border-fuchsia-200", accent: "text-fuchsia-600", badgeBg: "bg-fuchsia-100 text-fuchsia-800" } // Contact Info
+  ];
 
-  // Slide content render helper
-  const renderSlideContent = () => {
+  const renderLeftSlide = () => {
+    const currentStyle = slideStyles[currentIndex];
+    
     switch (currentIndex) {
       case 0: {
-        const item = displayBoardData[0];
+        const item = displayBoardData[0] || {
+          title: "Artisan Pastry & Coffee Combo",
+          subtitle: "Promo Sarapan Istimewa",
+          description: "Nikmati croissant mentega segar dengan Velvet Cloud Latte hangat.",
+          price: "Rp 75.000",
+          promoBadge: "PROMO HEMAT 20%",
+          imageUrl: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=600&auto=format&fit=crop"
+        };
         return (
           <motion.div
-            key="promo-slide"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0 w-full h-full"
+            key="promo-1"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.5 }}
+            className="h-full flex flex-col justify-between p-8 md:p-12"
           >
-            <motion.img
-              src={item.imageUrl}
-              alt={item.title}
-              initial={{ scale: 1.05 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 12, ease: "easeOut" }}
-              className="object-cover w-full h-full absolute inset-0"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/70 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-transparent to-neutral-950/40" />
-
-            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-24 z-10">
-              <div className="max-w-3xl space-y-4 md:space-y-6">
-                <span className="inline-flex items-center gap-2 bg-rose-500 text-white font-bold text-[10px] md:text-xs uppercase tracking-widest px-4 py-2 rounded-full shadow-lg w-max animate-bounce">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  {item.promoBadge}
-                </span>
-                <div className="space-y-2">
-                  <p className="text-amber-400 text-sm md:text-xl font-semibold tracking-wide uppercase">
-                    {item.subtitle}
-                  </p>
-                  <h1 className="text-3xl md:text-7xl font-extrabold tracking-tight leading-tight md:leading-none bg-gradient-to-r from-white via-neutral-100 to-neutral-300 bg-clip-text text-transparent">
-                    {item.title}
-                  </h1>
-                </div>
-                <p className="text-neutral-300 text-sm md:text-xl font-light leading-relaxed max-w-2xl drop-shadow-md line-clamp-3 md:line-clamp-none">
-                  {item.description}
-                </p>
-                {item.price && (
-                  <div className="flex items-center gap-3 pt-2">
-                    <span className="text-neutral-400 text-xs md:text-sm tracking-wider uppercase font-medium">Harga Promo:</span>
-                    <span className="text-2xl md:text-5xl font-extrabold text-amber-400 drop-shadow-[0_2px_10px_rgba(245,158,11,0.4)]">
-                      {item.price}
-                    </span>
-                  </div>
-                )}
+            <div className="space-y-4">
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${currentStyle.badgeBg}`}>
+                {item.promoBadge}
+              </span>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-neutral-800 leading-tight">
+                {item.title}
+              </h2>
+              <p className="text-neutral-600 text-sm md:text-base leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+            
+            <div className="mt-6 space-y-4">
+              <div className="relative rounded-2xl overflow-hidden aspect-[16/9] max-h-[220px] shadow-md border border-neutral-100">
+                <img src={item.imageUrl} alt={item.title} className="object-cover w-full h-full" />
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-neutral-400 text-xs md:text-sm">Harga Paket:</span>
+                <span className={`text-3xl md:text-4xl font-extrabold ${currentStyle.accent}`}>{item.price}</span>
               </div>
             </div>
           </motion.div>
         );
       }
       case 1: {
-        const item = displayBoardData[1];
+        const item = displayBoardData[1] || {
+          title: "Denbiz Signature Brew",
+          subtitle: "Rekomendasi Barista Terbaik",
+          description: "Campuran espresso Arabika Flores, susu segar, dan sirup rempah rahasia.",
+          price: "Rp 55.000",
+          promoBadge: "BEST SELLER",
+          imageUrl: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop"
+        };
         return (
           <motion.div
-            key="best-seller-slide"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0 w-full h-full"
+            key="promo-2"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.5 }}
+            className="h-full flex flex-col justify-between p-8 md:p-12"
           >
-            <motion.img
-              src={item.imageUrl}
-              alt={item.title}
-              initial={{ scale: 1.05 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 12, ease: "easeOut" }}
-              className="object-cover w-full h-full absolute inset-0"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/95 via-neutral-950/70 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-transparent to-neutral-950/40" />
+            <div className="space-y-4">
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${currentStyle.badgeBg} uppercase tracking-wider`}>
+                {item.promoBadge}
+              </span>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-neutral-800 leading-tight">
+                {item.title}
+              </h2>
+              <p className="text-neutral-600 text-sm md:text-base leading-relaxed">
+                {item.description}
+              </p>
+            </div>
 
-            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-24 z-10">
-              <div className="max-w-3xl space-y-4 md:space-y-6">
-                <span className="inline-flex items-center gap-2 bg-amber-500 text-neutral-950 font-bold text-[10px] md:text-xs uppercase tracking-widest px-4 py-2 rounded-full shadow-lg w-max">
-                  <Coffee className="w-3.5 h-3.5 fill-neutral-950" />
-                  {item.promoBadge}
-                </span>
-                <div className="space-y-2">
-                  <p className="text-amber-400 text-sm md:text-xl font-semibold tracking-wide uppercase">
-                    {item.subtitle}
-                  </p>
-                  <h1 className="text-3xl md:text-7xl font-extrabold tracking-tight leading-tight md:leading-none bg-gradient-to-r from-white via-neutral-100 to-neutral-300 bg-clip-text text-transparent">
-                    {item.title}
-                  </h1>
-                </div>
-                <p className="text-neutral-300 text-sm md:text-xl font-light leading-relaxed max-w-2xl drop-shadow-md line-clamp-3 md:line-clamp-none">
-                  {item.description}
-                </p>
-                {item.price && (
-                  <div className="flex items-center gap-3 pt-2">
-                    <span className="text-neutral-400 text-xs md:text-sm tracking-wider uppercase font-medium">Harga:</span>
-                    <span className="text-2xl md:text-5xl font-extrabold text-amber-400 drop-shadow-[0_2px_10px_rgba(245,158,11,0.4)]">
-                      {item.price}
-                    </span>
-                  </div>
-                )}
+            <div className="mt-6 space-y-4">
+              <div className="relative rounded-2xl overflow-hidden aspect-[16/9] max-h-[220px] shadow-md border border-neutral-100">
+                <img src={item.imageUrl} alt={item.title} className="object-cover w-full h-full" />
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-neutral-400 text-xs md:text-sm">Harga:</span>
+                <span className={`text-3xl md:text-4xl font-extrabold ${currentStyle.accent}`}>{item.price}</span>
               </div>
             </div>
           </motion.div>
@@ -177,129 +160,45 @@ export default function DisplayPage() {
       case 2: {
         return (
           <motion.div
-            key="menu-list-slide"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0 w-full h-full overflow-hidden"
+            key="wifi-info"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.5 }}
+            className="h-full flex flex-col justify-center p-8 md:p-12 space-y-6 md:space-y-8"
           >
-            {/* Cinematic Background Image */}
-            <motion.img
-              src={cafeBgUrl}
-              alt="Cafe Interior background"
-              initial={{ scale: 1.1 }}
-              animate={{ scale: 1.05 }}
-              transition={{ duration: 12, ease: "linear" }}
-              className="object-cover w-full h-full absolute inset-0 blur-sm brightness-[0.25]"
-            />
-            {/* Ambient Lighting Gradients */}
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/90 to-amber-950/20" />
+            <div className="space-y-2">
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${currentStyle.badgeBg} uppercase tracking-wider`}>
+                Koneksi Internet
+              </span>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-neutral-800">
+                Akses Wi-Fi Gratis
+              </h2>
+              <p className="text-neutral-500 text-xs md:text-sm">
+                Nikmati koneksi internet berkecepatan tinggi sambil menikmati kopi Anda.
+              </p>
+            </div>
 
-            <div className="absolute inset-0 p-4 md:p-16 flex flex-col justify-between z-10">
-              {/* Slide Header */}
-              <div className="text-center space-y-1 mt-14 md:mt-4">
-                <span className="text-amber-400 text-[10px] md:text-xs tracking-[0.25em] uppercase font-bold">Denbiz Coffee Board</span>
-                <h2 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight">DAFTAR MENU KAMI</h2>
-                <div className="w-16 h-[2px] bg-amber-500 mx-auto mt-2 rounded-full" />
-              </div>
-
-              {/* Scrollable grid menu wrapper to prevent overflow on Mobile */}
-              <div className="flex-grow my-4 md:my-8 overflow-y-auto max-h-[62vh] md:max-h-[68vh] px-1 md:px-4 scrollbar-thin scrollbar-thumb-amber-500/30 scrollbar-track-transparent">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto items-start">
-                  
-                  {/* Column 1: Coffee & Tea */}
-                  <div className="bg-black/45 border border-white/5 backdrop-blur-lg p-5 rounded-xl space-y-6">
-                    <div>
-                      <div className="flex items-center gap-2 border-b border-white/10 pb-2 mb-4">
-                        <Coffee className="w-5 h-5 text-amber-400" />
-                        <h3 className="text-base font-extrabold text-white uppercase tracking-wider">Coffee Selection</h3>
-                      </div>
-                      <div className="space-y-3">
-                        {coffees.map((item) => (
-                          <div key={item.id} className="flex justify-between items-baseline gap-1">
-                            <span className="text-neutral-200 text-xs md:text-sm font-medium">{item.name}</span>
-                            <div className="flex-grow border-b border-dotted border-white/15 mx-1.5" />
-                            <span className="text-amber-400 font-bold text-xs md:text-sm whitespace-nowrap">{item.price.replace("Rp ", "")}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="flex items-center gap-2 border-b border-white/10 pb-2 mb-4 pt-2">
-                        <Sparkles className="w-5 h-5 text-amber-400" />
-                        <h3 className="text-base font-extrabold text-white uppercase tracking-wider">Tea Series</h3>
-                      </div>
-                      <div className="space-y-3">
-                        {teas.map((item) => (
-                          <div key={item.id} className="flex justify-between items-baseline gap-1">
-                            <span className="text-neutral-200 text-xs md:text-sm font-medium">{item.name}</span>
-                            <div className="flex-grow border-b border-dotted border-white/15 mx-1.5" />
-                            <span className="text-amber-400 font-bold text-xs md:text-sm whitespace-nowrap">{item.price.replace("Rp ", "")}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Column 2: Non-Coffee & Manual Brew */}
-                  <div className="bg-black/45 border border-white/5 backdrop-blur-lg p-5 rounded-xl space-y-6">
-                    <div>
-                      <div className="flex items-center gap-2 border-b border-white/10 pb-2 mb-4">
-                        <Sparkles className="w-5 h-5 text-amber-400" />
-                        <h3 className="text-base font-extrabold text-white uppercase tracking-wider">Non-Coffee</h3>
-                      </div>
-                      <div className="space-y-3">
-                        {nonCoffees.map((item) => (
-                          <div key={item.id} className="flex justify-between items-baseline gap-1">
-                            <span className="text-neutral-200 text-xs md:text-sm font-medium">{item.name}</span>
-                            <div className="flex-grow border-b border-dotted border-white/15 mx-1.5" />
-                            <span className="text-amber-400 font-bold text-xs md:text-sm whitespace-nowrap">{item.price.replace("Rp ", "")}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="flex items-center gap-2 border-b border-white/10 pb-2 mb-4 pt-2">
-                        <Coffee className="w-5 h-5 text-amber-400" />
-                        <h3 className="text-base font-extrabold text-white uppercase tracking-wider">Manual Brew V60</h3>
-                      </div>
-                      <div className="space-y-3">
-                        {manualBrews.map((item) => (
-                          <div key={item.id} className="flex justify-between items-baseline gap-1">
-                            <span className="text-neutral-200 text-xs md:text-sm font-medium">{item.name}</span>
-                            <div className="flex-grow border-b border-dotted border-white/15 mx-1.5" />
-                            <span className="text-amber-400 font-bold text-xs md:text-sm whitespace-nowrap">{item.price.replace("Rp ", "")}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Column 3: Foods */}
-                  <div className="bg-black/45 border border-white/5 backdrop-blur-lg p-5 rounded-xl">
-                    <div className="flex items-center gap-2 border-b border-white/10 pb-2 mb-4">
-                      <Utensils className="w-5 h-5 text-amber-400" />
-                      <h3 className="text-base font-extrabold text-white uppercase tracking-wider">Food & Pastry</h3>
-                    </div>
-                    <div className="space-y-3">
-                      {foods.map((item) => (
-                        <div key={item.id} className="flex justify-between items-baseline gap-1">
-                          <span className="text-neutral-200 text-xs md:text-sm font-medium">{item.name}</span>
-                          <div className="flex-grow border-b border-dotted border-white/15 mx-1.5" />
-                          <span className="text-amber-400 font-bold text-xs md:text-sm whitespace-nowrap">{item.price.replace("Rp ", "")}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
+            <div className="bg-white/80 backdrop-blur-sm border border-sky-100 p-6 rounded-2xl shadow-sm space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-sky-50 rounded-xl text-sky-600">
+                  <Wifi className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs text-neutral-400 font-semibold uppercase tracking-wider">SSID / Nama Wifi</p>
+                  <p className="text-lg font-bold text-neutral-800">KopiBangJenggot_Free</p>
                 </div>
               </div>
-              
-              {/* Buffer for indicator */}
-              <div className="h-6" />
+
+              <div className="flex items-center gap-4 border-t border-sky-50 pt-4">
+                <div className="p-3 bg-sky-50 rounded-xl text-sky-600">
+                  <span className="text-xs font-bold font-mono">***</span>
+                </div>
+                <div>
+                  <p className="text-xs text-neutral-400 font-semibold uppercase tracking-wider">Kata Sandi / Password</p>
+                  <p className="text-lg font-bold text-neutral-800 font-mono">bangjenggot123</p>
+                </div>
+              </div>
             </div>
           </motion.div>
         );
@@ -307,113 +206,105 @@ export default function DisplayPage() {
       case 3: {
         return (
           <motion.div
-            key="info-slide"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0 w-full h-full overflow-hidden"
+            key="hours-info"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.5 }}
+            className="h-full flex flex-col justify-center p-8 md:p-12 space-y-6 md:space-y-8"
           >
-            {/* Cinematic Background Image */}
-            <motion.img
-              src={cafeBgUrl}
-              alt="Cafe Interior background"
-              initial={{ scale: 1.05 }}
-              animate={{ scale: 1.1 }}
-              transition={{ duration: 12, ease: "linear" }}
-              className="object-cover w-full h-full absolute inset-0 blur-sm brightness-[0.25]"
-            />
-            {/* Gradient Mask */}
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/85 to-amber-950/20" />
+            <div className="space-y-2">
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${currentStyle.badgeBg} uppercase tracking-wider`}>
+                Jadwal Cafe
+              </span>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-neutral-800">
+                Jam Operasional
+              </h2>
+              <p className="text-neutral-500 text-xs md:text-sm">
+                Kami siap menyajikan seduhan terbaik untuk menemani hari Anda.
+              </p>
+            </div>
 
-            <div className="absolute inset-0 p-4 md:p-16 flex flex-col justify-between z-10">
-              {/* Slide Header */}
-              <div className="text-center space-y-1 mt-14 md:mt-4">
-                <span className="text-amber-400 text-[10px] md:text-xs tracking-[0.25em] uppercase font-bold">Denbiz Coffee Board</span>
-                <h2 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight">KONEKSI & JAM LAYANAN</h2>
-                <div className="w-16 h-[2px] bg-amber-500 mx-auto mt-2 rounded-full" />
+            <div className="bg-white/80 backdrop-blur-sm border border-emerald-100 p-6 rounded-2xl shadow-sm space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Clock className="w-5 h-5 text-emerald-600" />
+                  <span className="font-semibold text-neutral-700">Selasa - Jum&apos;at</span>
+                </div>
+                <span className="font-bold text-neutral-900">13.00 - 21.00 WIB</span>
+              </div>
+              
+              <div className="flex items-center justify-between border-t border-emerald-50 pt-3">
+                <div className="flex items-center gap-3">
+                  <Clock className="w-5 h-5 text-emerald-600" />
+                  <span className="font-semibold text-neutral-700">Sabtu - Minggu</span>
+                </div>
+                <span className="font-bold text-neutral-900">10.00 - 22.00 WIB</span>
               </div>
 
-              {/* Responsive Grid with Glassmorphism */}
-              <div className="flex-grow my-4 md:my-8 overflow-y-auto max-h-[62vh] md:max-h-[68vh] px-1 md:px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-5xl mx-auto items-center">
-                  
-                  {/* WiFi Credentials Card */}
-                  <div className="bg-black/45 border border-white/5 backdrop-blur-md p-6 md:p-8 rounded-xl flex items-center gap-5 shadow-2xl relative overflow-hidden group">
-                    <div className="absolute -top-4 -right-4 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                      <Wifi className="w-32 h-32 text-white" />
-                    </div>
-                    <div className="p-3.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-lg">
-                      <Wifi className="w-6 h-6 md:w-8 md:h-8" />
-                    </div>
-                    <div className="space-y-1">
-                      <h3 className="text-[10px] md:text-xs uppercase tracking-widest text-neutral-400 font-bold">Akses Wi-Fi Gratis</h3>
-                      <p className="text-sm md:text-lg font-bold text-white">SSID: <span className="text-amber-400 font-mono">Denbiz_FreeWifi</span></p>
-                      <p className="text-xs md:text-base text-neutral-300">Sandi: <span className="text-amber-400 font-mono">kopipremium1998</span></p>
-                    </div>
-                  </div>
+              <div className="flex items-center justify-between border-t border-emerald-50 pt-3 text-rose-600">
+                <div className="flex items-center gap-3">
+                  <Clock className="w-5 h-5" />
+                  <span className="font-semibold">Hari Senin</span>
+                </div>
+                <span className="font-bold uppercase tracking-wider">Libur / Tutup</span>
+              </div>
+            </div>
+          </motion.div>
+        );
+      }
+      case 4: {
+        return (
+          <motion.div
+            key="contact-info"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.5 }}
+            className="h-full flex flex-col justify-center p-8 md:p-12 space-y-6 md:space-y-8"
+          >
+            <div className="space-y-2">
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${currentStyle.badgeBg} uppercase tracking-wider`}>
+                Kontak Kami
+              </span>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-neutral-800">
+                Hubungi & Ikuti
+              </h2>
+              <p className="text-neutral-500 text-xs md:text-sm">
+                Ikuti perkembangan menu baru dan promo seru di sosial media kami.
+              </p>
+            </div>
 
-                  {/* Opening Hours Card */}
-                  <div className="bg-black/45 border border-white/5 backdrop-blur-md p-6 md:p-8 rounded-xl flex items-center gap-5 shadow-2xl relative overflow-hidden group">
-                    <div className="absolute -top-4 -right-4 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                      <Clock className="w-32 h-32 text-white" />
-                    </div>
-                    <div className="p-3.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-lg">
-                      <Clock className="w-6 h-6 md:w-8 md:h-8" />
-                    </div>
-                    <div className="space-y-1">
-                      <h3 className="text-[10px] md:text-xs uppercase tracking-widest text-neutral-400 font-bold">Jam Kerja Operasional</h3>
-                      <p className="text-sm md:text-lg font-bold text-white leading-snug">Senin - Minggu</p>
-                      <p className="text-xs md:text-base text-amber-400 font-semibold">07:00 - 22:00 WIB</p>
-                    </div>
-                  </div>
-
-                  {/* Location Card */}
-                  <div className="bg-black/45 border border-white/5 backdrop-blur-md p-6 md:p-8 rounded-xl flex items-center gap-5 shadow-2xl relative overflow-hidden group">
-                    <div className="absolute -top-4 -right-4 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                      <MapPin className="w-32 h-32 text-white" />
-                    </div>
-                    <div className="p-3.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-lg">
-                      <MapPin className="w-6 h-6 md:w-8 md:h-8" />
-                    </div>
-                    <div className="space-y-1">
-                      <h3 className="text-[10px] md:text-xs uppercase tracking-widest text-neutral-400 font-bold">Lokasi Cafe</h3>
-                      <p className="text-xs md:text-sm font-semibold text-neutral-200 leading-relaxed max-w-sm">Jl. Sultan Agung km 28,5, Bekasi, Jawa Barat</p>
-                    </div>
-                  </div>
-
-                  {/* Socials & Web Card */}
-                  <div className="bg-black/45 border border-white/5 backdrop-blur-md p-6 md:p-8 rounded-xl flex items-center gap-5 shadow-2xl relative overflow-hidden group">
-                    <div className="absolute -top-4 -right-4 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                      <Globe className="w-32 h-32 text-white" />
-                    </div>
-                    <div className="p-3.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-lg">
-                      <InstagramIcon className="w-6 h-6 md:w-8 md:h-8" />
-                    </div>
-                    <div className="space-y-1 w-full">
-                      <h3 className="text-[10px] md:text-xs uppercase tracking-widest text-neutral-400 font-bold">Kunjungi Sosial Media</h3>
-                      <div className="flex flex-col gap-1.5 pt-1">
-                        <div className="flex items-center gap-1.5 text-white">
-                          <InstagramIcon className="w-4 h-4 text-amber-400" />
-                          <span className="text-xs md:text-sm font-semibold">@denbizcoffee</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 text-white">
-                          <Globe className="w-4 h-4 text-amber-400" />
-                          <span className="text-xs md:text-sm font-semibold">denbizcoffee.com</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 text-white">
-                          <Phone className="w-4 h-4 text-amber-400" />
-                          <span className="text-xs md:text-sm font-semibold">+62 851-7319-0648</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+            <div className="bg-white/80 backdrop-blur-sm border border-fuchsia-100 p-6 rounded-2xl shadow-sm space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-fuchsia-50 rounded-xl text-fuchsia-600">
+                  <InstagramIcon className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-xs text-neutral-400 font-semibold uppercase tracking-wider">Instagram</p>
+                  <p className="text-base font-bold text-neutral-800">@kopibangjenggot</p>
                 </div>
               </div>
 
-              {/* Buffer for indicator */}
-              <div className="h-6" />
+              <div className="flex items-center gap-4 border-t border-fuchsia-50 pt-4">
+                <div className="p-3 bg-fuchsia-50 rounded-xl text-fuchsia-600">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-xs text-neutral-400 font-semibold uppercase tracking-wider">WhatsApp</p>
+                  <p className="text-base font-bold text-neutral-800">+62 851-7319-0648</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 border-t border-fuchsia-50 pt-4">
+                <div className="p-3 bg-fuchsia-50 rounded-xl text-fuchsia-600">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-xs text-neutral-400 font-semibold uppercase tracking-wider">Lokasi</p>
+                  <p className="text-sm font-bold text-neutral-800">Bekasi, Jawa Barat</p>
+                </div>
+              </div>
             </div>
           </motion.div>
         );
@@ -424,84 +315,254 @@ export default function DisplayPage() {
   };
 
   return (
-    <div className="relative h-screen w-screen bg-neutral-950 text-white overflow-hidden select-none font-sans">
-      {/* Dynamic Slide Content Wrapper */}
-      <div className="absolute inset-0">
-        <AnimatePresence mode="wait">
-          {renderSlideContent()}
-        </AnimatePresence>
-      </div>
+    <div className="relative min-h-screen w-screen bg-neutral-100 text-neutral-800 overflow-x-hidden flex flex-col lg:flex-row select-none font-sans">
+      
+      {/* 1. LEFT SIDE: Dynamic Slides with Varying Bright Colors */}
+      <div className={`w-full lg:w-[40%] xl:w-[35%] min-h-[50vh] lg:min-h-screen relative overflow-hidden flex flex-col justify-between ${slideStyles[currentIndex].bg} border-b lg:border-b-0 lg:border-r border-neutral-200 transition-colors duration-500`}>
+        
+        {/* Floating Header Back Button */}
+        <div className="p-6 flex justify-between items-center z-10">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-2 bg-white hover:bg-neutral-50 border border-neutral-200 px-4 py-2 rounded-full text-neutral-700 transition-all duration-300 shadow-sm cursor-pointer group"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span className="text-xs font-semibold">Kembali</span>
+          </button>
 
-      {/* Floating Header & Back Button */}
-      <div className="absolute top-4 md:top-8 left-4 md:left-8 right-4 md:right-8 z-30 flex justify-between items-center">
-        <button
-          onClick={() => router.back()}
-          className="flex items-center gap-2 md:gap-3 bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/10 px-3.5 py-2 md:px-5 md:py-3 rounded-full text-white/90 hover:text-white transition-all duration-300 shadow-lg cursor-pointer group"
-        >
-          <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform duration-300" />
-          <span className="text-xs md:text-sm font-medium tracking-wide">Kembali</span>
-        </button>
+          <div className="flex items-center gap-2 bg-white border border-neutral-200 px-4 py-2 rounded-full text-neutral-600 text-xs font-bold tracking-wider uppercase shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            Live Display
+          </div>
+        </div>
 
-        <div className="flex items-center gap-2 md:gap-4 bg-black/40 backdrop-blur-md border border-white/10 px-3.5 py-2 md:px-5 md:py-2.5 rounded-full text-white/80 text-[10px] md:text-sm font-semibold tracking-wider uppercase">
-          <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-500 animate-pulse" />
-          Denbiz Board
+        {/* Content Wrapper */}
+        <div className="flex-grow flex flex-col justify-center">
+          <AnimatePresence mode="wait">
+            {renderLeftSlide()}
+          </AnimatePresence>
+        </div>
+
+        {/* Bottom Controls */}
+        <div className="p-6 flex items-center justify-between z-10 border-t border-neutral-200/50 bg-white/20 backdrop-blur-xs">
+          {/* Progress dots */}
+          <div className="flex gap-2">
+            {Array.from({ length: totalSlides }).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className="group relative h-1.5 rounded-full overflow-hidden transition-all duration-300 cursor-pointer"
+                style={{
+                  width: currentIndex === idx ? "1.5rem" : "0.5rem",
+                  backgroundColor: currentIndex === idx ? "rgba(217, 119, 6, 1)" : "rgba(0, 0, 0, 0.15)"
+                }}
+              >
+                {currentIndex === idx && isPlaying && (
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 8, ease: "linear" }}
+                    className="absolute inset-0 bg-amber-500"
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Action buttons */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsPlaying(!isPlaying)}
+              className="p-2 bg-white hover:bg-neutral-50 border border-neutral-200 rounded-full text-neutral-600 shadow-sm cursor-pointer"
+            >
+              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-neutral-600" />}
+            </button>
+            <button
+              onClick={handlePrev}
+              className="p-2 bg-white hover:bg-neutral-50 border border-neutral-200 rounded-full text-neutral-600 shadow-sm cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="p-2 bg-white hover:bg-neutral-50 border border-neutral-200 rounded-full text-neutral-600 shadow-sm cursor-pointer"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Right Side Navigation Controls */}
-      <div className="absolute right-4 md:right-8 bottom-4 md:bottom-8 z-30 flex items-center gap-2 md:gap-4">
-        {/* Play/Pause Button */}
-        <button
-          onClick={() => setIsPlaying(!isPlaying)}
-          className="p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-white/90 hover:text-white transition-all cursor-pointer"
-          title={isPlaying ? "Pause Slideshow" : "Play Slideshow"}
-        >
-          {isPlaying ? <Pause className="w-4 h-4 md:w-5 md:h-5" /> : <Play className="w-4 h-4 md:w-5 md:h-5 fill-white" />}
-        </button>
+      {/* 2. RIGHT SIDE: Fixed Complete Menu (White Background) */}
+      <div className="w-full lg:w-[60%] xl:w-[65%] bg-white text-neutral-800 p-6 md:p-8 xl:p-12 flex flex-col justify-between overflow-y-auto">
+        
+        {/* Menu Header resembling the image */}
+        <div className="flex flex-col sm:flex-row items-center justify-between border-b-2 border-neutral-900 pb-6 mb-8 gap-4 sm:gap-0">
+          
+          {/* Logo & Brand */}
+          <div className="flex items-center gap-4">
+            {/* Styled Circle Logo */}
+            <div className="w-16 h-16 rounded-full bg-[#1b4353] border-4 border-neutral-900 flex items-center justify-center text-white relative flex-shrink-0 shadow-sm">
+              <span className="font-extrabold text-[9px] tracking-tighter uppercase text-center leading-none">
+                KOPI<br />BANG<br />JENGGOT
+              </span>
+            </div>
+            <div>
+              <h1 className="text-2xl md:text-3xl font-black text-neutral-900 tracking-tight leading-none uppercase">
+                KOPI BANG JENGGOT
+              </h1>
+              <p className="text-[10px] md:text-xs font-serif italic text-neutral-500 mt-1 font-semibold tracking-wide">
+                Really taste the coffee
+              </p>
+            </div>
+          </div>
 
-        {/* Previous Button */}
-        <button
-          onClick={handlePrev}
-          className="p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-white/90 hover:text-white transition-all cursor-pointer"
-        >
-          <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
-        </button>
+          {/* Vertical Divider (Hidden on small screens) */}
+          <div className="hidden sm:block w-[2px] h-14 bg-neutral-300 mx-4" />
 
-        {/* Next Button */}
-        <button
-          onClick={handleNext}
-          className="p-2 md:p-3 bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-white/90 hover:text-white transition-all cursor-pointer"
-        >
-          <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
-        </button>
+          {/* Operational Hours */}
+          <div className="text-center sm:text-left space-y-1">
+            <h3 className="font-black text-sm md:text-base text-neutral-900 uppercase tracking-widest leading-none">
+              OPEN
+            </h3>
+            <p className="text-xs font-bold text-neutral-600">
+              Selasa - Jum&apos;at, <span className="font-mono text-neutral-900">13.00 - 21.00</span>
+            </p>
+            <p className="text-xs font-bold text-neutral-600">
+              Sabtu - Minggu, <span className="font-mono text-neutral-900">10.00 - 22.00</span>
+            </p>
+            <div className="text-[10px] font-bold text-rose-600 tracking-wider">
+              --- Senin Libur ---
+            </div>
+          </div>
+        </div>
+
+        {/* 6 Categories Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          
+          {/* Column A: Coffee, Espresso Base, Filter Coffee */}
+          <div className="space-y-6">
+            {/* Category 1: COFFEE */}
+            <div>
+              <h2 className="text-lg font-black text-neutral-900 border-b border-neutral-300 pb-1 mb-3 uppercase tracking-wider flex items-center gap-2">
+                <Coffee className="w-4 h-4 text-[#1b4353]" /> COFFEE
+              </h2>
+              <div className="space-y-2">
+                {coffeeItems.map((item) => (
+                  <div key={item.id} className="flex justify-between items-baseline gap-2">
+                    <span className="text-xs md:text-sm font-bold text-neutral-700">{item.name}</span>
+                    <div className="flex-grow border-b border-dotted border-neutral-300 mx-1" />
+                    <span className="font-extrabold text-xs md:text-sm text-neutral-900 whitespace-nowrap">
+                      {item.price.replace("Rp ", "").replace(".000", "K")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Category 2: ESPRESSO BASE */}
+            <div>
+              <h2 className="text-lg font-black text-neutral-900 border-b border-neutral-300 pb-1 mb-3 uppercase tracking-wider flex items-center gap-2">
+                <Coffee className="w-4 h-4 text-[#1b4353]" /> ESPRESSO BASE
+              </h2>
+              <div className="space-y-2">
+                {espressoBaseItems.map((item) => (
+                  <div key={item.id} className="flex justify-between items-baseline gap-2">
+                    <span className="text-xs md:text-sm font-bold text-neutral-700">{item.name}</span>
+                    <div className="flex-grow border-b border-dotted border-neutral-300 mx-1" />
+                    <span className="font-extrabold text-xs md:text-sm text-neutral-900 whitespace-nowrap">
+                      {item.price.replace("Rp ", "").replace(".000", "K")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Category 3: FILTER COFFEE */}
+            <div>
+              <h2 className="text-lg font-black text-neutral-900 border-b border-neutral-300 pb-1 mb-3 uppercase tracking-wider flex items-center gap-2">
+                <Coffee className="w-4 h-4 text-[#1b4353]" /> FILTER COFFEE
+              </h2>
+              <div className="space-y-2">
+                {filterCoffeeItems.map((item) => (
+                  <div key={item.id} className="flex justify-between items-baseline gap-2">
+                    <span className="text-xs md:text-sm font-bold text-neutral-700">{item.name}</span>
+                    <div className="flex-grow border-b border-dotted border-neutral-300 mx-1" />
+                    <span className="font-extrabold text-xs md:text-sm text-neutral-900 whitespace-nowrap">
+                      {item.price.replace("Rp ", "").replace(".000", "K")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Column B: Non Coffee, Tea, Food */}
+          <div className="space-y-6">
+            {/* Category 4: NON COFFEE */}
+            <div>
+              <h2 className="text-lg font-black text-neutral-900 border-b border-neutral-300 pb-1 mb-3 uppercase tracking-wider flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#1b4353]" /> NON COFFEE
+              </h2>
+              <div className="space-y-2">
+                {nonCoffeeItems.map((item) => (
+                  <div key={item.id} className="flex justify-between items-baseline gap-2">
+                    <span className="text-xs md:text-sm font-bold text-neutral-700">{item.name}</span>
+                    <div className="flex-grow border-b border-dotted border-neutral-300 mx-1" />
+                    <span className="font-extrabold text-xs md:text-sm text-neutral-900 whitespace-nowrap">
+                      {item.price.replace("Rp ", "").replace(".000", "K")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Category 5: TEA */}
+            <div>
+              <h2 className="text-lg font-black text-neutral-900 border-b border-neutral-300 pb-1 mb-3 uppercase tracking-wider flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#1b4353]" /> TEA
+              </h2>
+              <div className="space-y-2">
+                {teaItems.map((item) => (
+                  <div key={item.id} className="flex justify-between items-baseline gap-2">
+                    <span className="text-xs md:text-sm font-bold text-neutral-700">{item.name}</span>
+                    <div className="flex-grow border-b border-dotted border-neutral-300 mx-1" />
+                    <span className="font-extrabold text-xs md:text-sm text-neutral-900 whitespace-nowrap">
+                      {item.price.replace("Rp ", "").replace(".000", "K")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Category 6: FOOD */}
+            <div>
+              <h2 className="text-lg font-black text-neutral-900 border-b border-neutral-300 pb-1 mb-3 uppercase tracking-wider flex items-center gap-2">
+                <Utensils className="w-4 h-4 text-[#1b4353]" /> FOOD
+              </h2>
+              <div className="grid grid-cols-1 gap-2">
+                {foodItems.map((item) => (
+                  <div key={item.id} className="flex justify-between items-baseline gap-2">
+                    <span className="text-xs md:text-sm font-bold text-neutral-700">{item.name}</span>
+                    <div className="flex-grow border-b border-dotted border-neutral-300 mx-1" />
+                    <span className="font-extrabold text-xs md:text-sm text-neutral-900 whitespace-nowrap">
+                      {item.price.replace("Rp ", "").replace(".000", "K")}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Small aesthetic footer inside right side */}
+        <div className="mt-8 pt-4 border-t border-neutral-200 flex justify-between items-center text-[10px] text-neutral-400 font-bold uppercase tracking-wider">
+          <span>Kopi Bang Jenggot</span>
+          <span className="flex items-center gap-1">Made with <Heart className="w-3 h-3 text-rose-500 fill-current" /> in Indonesia</span>
+        </div>
       </div>
-
-      {/* Progress / Slide Indicator */}
-      <div className="absolute left-4 md:left-8 bottom-4 md:bottom-8 z-30 flex gap-1.5 md:gap-2">
-        {Array.from({ length: totalSlides }).map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            className="group relative h-1 md:h-1.5 rounded-full overflow-hidden transition-all duration-300 cursor-pointer"
-            style={{
-              width: currentIndex === idx ? "2rem" : "0.5rem",
-              backgroundColor: currentIndex === idx ? "rgba(245, 158, 11, 0.4)" : "rgba(255, 255, 255, 0.2)"
-            }}
-          >
-            {currentIndex === idx && isPlaying && (
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 12, ease: "linear" }}
-                className="absolute inset-0 bg-amber-400"
-              />
-            )}
-            {currentIndex === idx && !isPlaying && (
-              <div className="absolute inset-0 bg-amber-400" />
-            )}
-          </button>
-        ))}
-      </div>
+      
     </div>
   );
 }
