@@ -33,7 +33,7 @@ export default function ContactBar() {
             {getIcon(item.icon)}
             <div>
               <p className="font-bold text-primary text-sm">{item.title}</p>
-              <p className="text-xs text-on-surface-variant">{item.value}</p>
+              <p className="text-xs text-on-surface-variant leading-relaxed whitespace-pre-line">{item.value}</p>
             </div>
           </motion.div>
         ))}

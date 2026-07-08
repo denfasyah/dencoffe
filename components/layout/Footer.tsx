@@ -32,7 +32,7 @@ export default function Footer() {
           {/* <a className="text-4xl text-on-primary script-logo mb-6 block" href="#home">
             Denbiz Coffee
           </a> */}
-          <Image src="/logo.png" alt="Logo" width={100} height={100} />
+          <Image src="/logo2.png" alt="Logo" width={100} height={100} />
           <p className="text-on-primary/60 max-w-md mb-6 mt-5 leading-relaxed text-sm">
             {contactData.footerDescription}
           </p>

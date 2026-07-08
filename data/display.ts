@@ -14,37 +14,37 @@ export const displayBoardData: DisplayBoardItem[] = [
   {
     id: "d1",
     type: "promo",
-    title: "Artisan Pastry & Coffee Combo",
+    title: "Hazelnut",
     subtitle: "Promo Sarapan Istimewa",
     description: "Nikmati perpaduan sempurna dari kue croissant mentega segar dengan secangkir Velvet Cloud Latte hangat.",
     price: "Rp 75.000",
-    promoBadge: "PROMO HEMAT 20%",
-    mediaUrl: "/img5.png",
+    promoBadge: "PROMO 20%",
+    mediaUrl: "/assets/display/promohazelnut.png",
     bgColor: "bg-red-600 text-white"
   },
   {
     id: "d2",
     type: "bestseller",
-    title: "Kopi Susu Gula Aren",
+    title: "Vanilla Latte",
     subtitle: "Rekomendasi Barista",
-    description: "Perpaduan espresso Arabika robusta, susu segar, dan sirup gula aren manis gurih alami khas Indonesia.",
-    price: "Rp 17.000",
+    description: "Perpaduan espresso Arabika robusta, susu segar, dan sirup vanilla premium.",
+    price: "Rp 20.000",
     promoBadge: "BEST SELLER",
-    mediaUrl: "/bestseller.png",
-    bgColor: "bg-amber-600 text-white"
+    mediaUrl: "/assets/display/bestseller.png",
+    bgColor: "bg-[#008080] text-white"
   },
   {
     id: "d3",
     type: "image",
     title: "Suasana Hangat & Nyaman",
     description: "Tempat terbaik untuk berkumpul bersama teman, bekerja produktif, atau sekadar menikmati waktu santai Anda.",
-    mediaUrl: "/img2.png"
+    mediaUrl: "/assets/display/img2.png"
   },
   {
     id: "d4",
     type: "video",
     title: "Dedikasi Barista Terbaik Kami",
     description: "Setiap cangkir kopi diseduh dengan presisi tinggi menggunakan biji kopi pilihan untuk menghadirkan rasa tak terlupakan.",
-    mediaUrl: "/cuplikan1.mp4"
+    mediaUrl: "/assets/display/cuplikan1.mp4"
   }
 ];

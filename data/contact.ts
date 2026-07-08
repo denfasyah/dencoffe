@@ -26,7 +26,7 @@ export const contactData: ContactData = {
   hours: {
     icon: "Clock",
     title: "Jam Operasional",
-    value: "Selasa - Jum'at : 13:00 - 21:00 WIB <br> Sabtu - Minggu : 10:00 - 22:00 WIB <br> Senin : Libur"
+    value: `Selasa - Jum'at : 13:00 - 21:00 WIB \n Sabtu - Minggu : 10:00 - 22:00 WIB \n Senin : Libur`
   },
   phone: {
     icon: "Phone",

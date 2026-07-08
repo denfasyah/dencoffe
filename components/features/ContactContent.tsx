@@ -147,7 +147,7 @@ export default function ContactContent() {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-on-primary/60 uppercase tracking-widest">{item.title}</p>
-                      <p className="text-sm text-on-primary/90 leading-relaxed">{item.value}</p>
+                      <p className="text-sm text-on-primary/90 leading-relaxed whitespace-pre-line">{item.value}</p>
                     </div>
                   </div>
                 ))}

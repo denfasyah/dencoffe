@@ -18,7 +18,7 @@ export const featuresData: FeatureItem[] = [
   {
     icon: "MapPin",
     title: "Area Parkir",
-    description: "Area parkir yang luas, aman, dan mudah diakses untuk kendaraan Anda."
+    description: "Area parkir yang aman, dan mudah diakses untuk kendaraan Anda."
   },
   {
     icon: "Coffee",

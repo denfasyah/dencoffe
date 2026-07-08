@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Camera } from "lucide-react";
 import { DisplayBoardItem } from "@/data/display";
 
 interface DisplaySlideProps {
@@ -24,31 +23,38 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.96 }}
         transition={{ duration: 0.4 }}
-        className="h-full flex flex-col justify-start gap-4 p-6 md:p-8"
+        className="h-full flex flex-col p-5 md:p-7 gap-3"
       >
-        <div className="space-y-2">
+        {/* Badge + Text */}
+        <div className="space-y-1.5 flex-shrink-0">
           <span className="inline-block px-3 py-1 rounded-full text-[10px] font-black bg-white text-neutral-900 uppercase tracking-widest shadow-sm">
             {item.promoBadge}
           </span>
           <h2 className="text-2xl md:text-3xl xl:text-4xl font-black leading-tight tracking-tight text-white">
             {item.title}
           </h2>
-          <p className="text-xs md:text-sm text-white/90 leading-relaxed max-w-sm">
+          <p className="text-xs md:text-sm text-white/85 leading-relaxed line-clamp-2">
             {item.description}
           </p>
         </div>
-        
-        <div className="space-y-2">
-          <div className="relative rounded-xl overflow-hidden aspect-[16/9] max-h-40 md:max-h-56 shadow-lg border border-white/20">
-            <img src={item.mediaUrl} alt={item.title} className="object-containt w-full h-full" />
-          </div>
-          {item.price && (
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-white/70 text-[9px] md:text-xs uppercase font-bold">Harga:</span>
-              <span className="text-xl md:text-2xl font-black tracking-tight text-white">{item.price}</span>
-            </div>
-          )}
+
+        {/* Product Image — white card, object-contain, no distortion */}
+        <div className="flex-grow min-h-0 rounded-2xl overflow-hidden bg-white/95 shadow-xl border border-white/30 flex items-center justify-center p-3">
+          <img
+            src={item.mediaUrl}
+            alt={item.title}
+            className="w-full h-full object-contain max-h-[200px] md:max-h-[240px] drop-shadow-md"
+            style={{ imageRendering: "auto" }}
+          />
         </div>
+
+        {/* Price */}
+        {item.price && (
+          <div className="flex items-baseline gap-1.5 flex-shrink-0">
+            <span className="text-white/70 text-[9px] md:text-[10px] uppercase font-bold tracking-widest">Harga:</span>
+            <span className="text-xl md:text-2xl font-black tracking-tight text-white">{item.price}</span>
+          </div>
+        )}
       </motion.div>
     );
   }
