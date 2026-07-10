@@ -58,7 +58,7 @@ export default function DisplayClient() {
     <div className="relative min-h-screen lg:h-screen w-full lg:w-screen bg-neutral-100 text-neutral-800 overflow-x-hidden overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row select-none font-sans">
       
       {/* 1. LEFT SIDE: Dynamic Slides (Solid Colors / Full Bleed Media) */}
-      <div className={`w-full lg:w-1/2 h-auto min-h-[440px] md:min-h-[480px] lg:h-full relative overflow-hidden flex flex-col justify-between ${bgClass} border-b lg:border-b-0 lg:border-r border-neutral-200 transition-colors duration-500`}>
+      <div className={`w-full lg:w-1/2 h-auto min-h-[650px] md:min-h-[600px] lg:h-full relative overflow-hidden flex flex-col justify-between ${bgClass} border-b lg:border-b-0 lg:border-r border-neutral-200 transition-colors duration-500`}>
         
         {/* Full Bleed Slides Container */}
         <div className="absolute inset-0 z-0">
