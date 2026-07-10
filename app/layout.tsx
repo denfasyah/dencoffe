@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const BRAND = "Kedai Kopi Bang Jenggot";
-const BASE_URL = "https://kopibangjenggot.com";
+const BASE_URL = "https://kedaikopibangjenggot.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
