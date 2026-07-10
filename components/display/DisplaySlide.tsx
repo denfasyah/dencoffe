@@ -26,7 +26,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
         className="absolute inset-0 w-full h-full flex flex-col md:flex-row overflow-hidden p-6 md:p-10 pt-24 pb-24 md:pt-28 md:pb-28 gap-6"
       >
         {/* Left Column: Text Content */}
-        <div className="w-full md:w-1/2 h-full flex flex-col justify-between z-10">
+        <div className="w-full md:w-1/2 h-auto md:h-full flex flex-col justify-between z-10 shrink-0">
           <div className="flex flex-col gap-6">
             {/* Animated Badge */}
             <motion.div
@@ -46,7 +46,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", bounce: 0.4, duration: 0.8, delay: 0.2 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-black leading-none tracking-tighter text-white drop-shadow-lg"
+                className="text-4xl md:text-6xl font-black leading-none tracking-tighter text-white drop-shadow-lg"
               >
                 {item.title}
               </motion.h2>
@@ -54,7 +54,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", bounce: 0.4, duration: 0.8, delay: 0.3 }}
-                className="text-base lg:text-lg text-white/90 leading-relaxed font-medium drop-shadow-md"
+                className="text-base md:text-md text-white/90 leading-relaxed font-medium drop-shadow-md"
               >
                 {item.description}
               </motion.p>
@@ -67,7 +67,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
               initial={{ opacity: 0, y: 50, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ type: "spring", bounce: 0.6, duration: 0.8, delay: 0.4 }}
-              className="flex flex-col items-start gap-1 bg-white/10 p-4 lg:p-6 rounded-2xl backdrop-blur-md border border-white/20 self-start shadow-2xl mt-8 mb-8 md:mb-12"
+              className="flex flex-col items-start gap-1 bg-white/10 p-4 lg:p-6 rounded-2xl backdrop-blur-md border border-white/20 self-start shadow-2xl mt-6 mb-2 md:mt-8 md:mb-12"
             >
               <span className="text-white/90 text-xs lg:text-sm uppercase font-black tracking-widest">Harga Khusus</span>
               <span className="text-3xl md:text-5xl font-black tracking-tighter text-white drop-shadow-md">{item.price}</span>
@@ -76,7 +76,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
         </div>
 
         {/* Right Column: Image */}
-        <div className="w-full md:w-1/2 h-full flex items-center justify-center relative z-0">
+        <div className="w-full md:w-1/2 flex-1 md:h-full flex items-center justify-center relative z-0 min-h-0">
           {/* Glowing Background Effect behind the image */}
           <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-64 h-64 lg:w-96 lg:h-96 bg-white/20 blur-[80px] rounded-full" />
           

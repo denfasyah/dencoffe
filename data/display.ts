@@ -14,12 +14,12 @@ export const displayBoardData: DisplayBoardItem[] = [
   {
     id: "d1",
     type: "promo",
-    title: "Hazelnut",
+    title: "Hazelnut & Cheese Burger",
     subtitle: "Promo Sarapan Istimewa",
-    description: "Nikmati perpaduan sempurna dari kue croissant mentega segar dengan secangkir Velvet Cloud Latte hangat.",
-    price: "Rp 75.000",
-    promoBadge: "PROMO 20%",
-    mediaUrl: "/assets/display/promohazelnut.png",
+    description: "Solusi lapar dan haus dalam satu sajian dengan harga spesial.",
+    price: "Rp 35.000",
+    promoBadge: "PROMO HEMAT",
+    mediaUrl: "/assets/display/promo.png",
     bgColor: "bg-red-600 text-white"
   },
   {
@@ -46,5 +46,7 @@ export const displayBoardData: DisplayBoardItem[] = [
     title: "Dedikasi Barista Terbaik Kami",
     description: "Setiap cangkir kopi diseduh dengan presisi tinggi menggunakan biji kopi pilihan untuk menghadirkan rasa tak terlupakan.",
     mediaUrl: "/assets/display/cuplikan1.mp4"
-  }
+  },
+  
+  
 ];

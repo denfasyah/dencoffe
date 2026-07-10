@@ -36,7 +36,7 @@ export const contactData: ContactData = {
   email: "[EMAIL_ADDRESS]",
   footerDescription: "Meningkatkan ritual harian menjadi pengalaman yang luar biasa. Bergabunglah dengan kami untuk secangkir keunggulan kopi, dibuat dengan semangat dan disajikan dengan sepenuh hati.",
   socials: {
-    instagram: "https://instagram.com",
+    instagram: "https://www.instagram.com/kopi_bang_jenggot/",
     tiktok: "https://tiktok.com",
     whatsapp: "https://wa.me/6287875330263?text=Halo%20Kedai%20Kopi%20Bang%20Jenggot%2C%20saya%20ingin%20melakukan%20reservasi%20meja%20untuk%20nongkrong%20/%20bekerja."
   }
