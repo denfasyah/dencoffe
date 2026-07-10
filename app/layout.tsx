@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const BRAND = "Kedai Kopi Bang Jenggot";
-const BASE_URL = "https://kedaikopibangjenggot.com"; // ganti dengan domain asli jika sudah ada
+const BASE_URL = "https://kopibangjenggot.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

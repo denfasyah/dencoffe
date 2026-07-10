@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface PageHeroProps {
   title: string;
@@ -17,10 +18,13 @@ export default function PageHero({
   return (
     <section className="relative h-64 md:h-80 flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           className="w-full h-full object-cover scale-105 animate-ken-burns"
           alt={title}
           src={imageUrl}
+          fill
+          sizes="100vw"
+          priority
         />
         <div className="absolute inset-0 hero-gradient" />
       </div>

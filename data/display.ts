@@ -30,22 +30,29 @@ export const displayBoardData: DisplayBoardItem[] = [
     description: "Perpaduan espresso Arabika robusta, susu segar, dan sirup vanilla premium.",
     price: "Rp 20.000",
     promoBadge: "BEST SELLER",
-    mediaUrl: "/assets/display/bestseller.png",
+    mediaUrl: "/assets/display/bestseller1.png",
     bgColor: "bg-[#008080] text-white"
   },
   {
     id: "d3",
-    type: "image",
-    title: "Suasana Hangat & Nyaman",
-    description: "Tempat terbaik untuk berkumpul bersama teman, bekerja produktif, atau sekadar menikmati waktu santai Anda.",
-    mediaUrl: "/assets/display/img2.png"
+    type: "video",
+    title: "Cuplikan Galeri",
+    description: "Kumpulan momen dan visual terbaik yang menggambarkan suasana serta pengalaman terbaik di kedai kami.",
+    mediaUrl: "/assets/display/cuplikan3.mp4"
   },
   {
     id: "d4",
     type: "video",
-    title: "Dedikasi Barista Terbaik Kami",
-    description: "Setiap cangkir kopi diseduh dengan presisi tinggi menggunakan biji kopi pilihan untuk menghadirkan rasa tak terlupakan.",
-    mediaUrl: "/assets/display/cuplikan1.mp4"
+    title: "Cuplikan",
+    description: "Video singkat yang menampilkan berbagai momen di pagi hari.",
+    mediaUrl: "/assets/display/cuplikan2.mp4"
+  },
+    {
+    id: "d5",
+    type: "video",
+    title: "Coffe Time",
+    description: "Video singkat yang menampilkan proses pembuatan kopi di kedai kami",
+    mediaUrl: "/assets/display/coffetime.mp4"
   },
   
   

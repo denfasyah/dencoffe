@@ -7,9 +7,10 @@ import { DisplayBoardItem } from "@/data/display";
 interface DisplaySlideProps {
   currentIndex: number;
   displayBoardData: DisplayBoardItem[];
+  onVideoEnd?: () => void;
 }
 
-export default function DisplaySlide({ currentIndex, displayBoardData }: DisplaySlideProps) {
+export default function DisplaySlide({ currentIndex, displayBoardData, onVideoEnd }: DisplaySlideProps) {
   const item = displayBoardData[currentIndex];
 
   if (!item) return null;
@@ -96,7 +97,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
             }}
             src={item.mediaUrl}
             alt={item.title}
-            className="w-auto h-auto max-w-full max-h-[85%] object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)] z-10 relative"
+            className="w-auto h-auto max-w-full max-h-full object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)] z-10 relative"
           />
         </div>
       </motion.div>
@@ -163,9 +164,9 @@ export default function DisplaySlide({ currentIndex, displayBoardData }: Display
         <video
           src={item.mediaUrl}
           autoPlay
-          loop
           muted
           playsInline
+          onEnded={onVideoEnd}
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10" />

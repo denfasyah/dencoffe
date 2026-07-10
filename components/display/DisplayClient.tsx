@@ -21,15 +21,20 @@ export default function DisplayClient() {
   const [isPlaying, setIsPlaying] = useState(true);
 
   const totalSlides = displayBoardData.length || 4;
+  const currentSlide = displayBoardData[currentIndex];
 
   useEffect(() => {
     if (!isPlaying) return;
+    // Jika slide saat ini adalah video, jangan gunakan interval default.
+    // Transisi akan ditrigger oleh event onEnded dari video.
+    if (currentSlide?.type === "video") return;
+
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
     }, 8000);
 
     return () => clearInterval(interval);
-  }, [isPlaying, totalSlides]);
+  }, [isPlaying, totalSlides, currentSlide?.type]);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
@@ -47,7 +52,6 @@ export default function DisplayClient() {
   const espressoBaseItems = menuData.filter((item) => item.category === "Espresso Base");
   const filterCoffeeItems = menuData.filter((item) => item.category === "Filter Coffee");
 
-  const currentSlide = displayBoardData[currentIndex];
   const bgClass = currentSlide?.bgColor || "bg-neutral-900 text-white";
 
   return (
@@ -63,6 +67,7 @@ export default function DisplayClient() {
               key={currentIndex} 
               currentIndex={currentIndex} 
               displayBoardData={displayBoardData} 
+              onVideoEnd={handleNext}
             />
           </AnimatePresence>
         </div>

@@ -5,14 +5,19 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { contactData } from "@/data/contact";
 
+import Image from "next/image";
+
 export default function Hero() {
   return (
     <header id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           className="w-full h-full object-cover scale-105 animate-ken-burns"
           alt="Suasana kedai kopi premium Denbiz Coffee"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNoqyF_S1ra7ZKsBLZn8n1pbLTeCA201R8jEaIvFBPwrARXHzKaAthXkUKnyQtKPEtvAQ9dPHdDCKyuiWOqfMrbqK43sWcRvcUHSYmtoGVHV711FBKmcK7fGUdMgmzQbDVO6v8Y-vFefVqKITQkveKhm0Vi_gHneN-YXr1CJJb6UOO36ksQw3CniqcwyVh9P4EWPqU4N10GqiN9naKAJMdsXVdh-WUL2Dba9reOOxbIMNwVZDgDyzmWmmcVaNaSR0AXPUR4zWZb1NA"
+          fill
+          sizes="100vw"
+          priority
         />
         <div className="absolute inset-0 hero-gradient" />
       </div>

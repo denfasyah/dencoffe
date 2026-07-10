@@ -9,8 +9,8 @@ Di sini juga dirincikan pembagian tugas antara Anda (Klien/Pemilik) dan saya (Ag
 - [x] Refactor dan perbaiki Digital Menu Board (Animasi, tata letak, resolusi).
 - [x] Perbaikan responsive desain di HP/Mobile (Gambar tidak terpotong).
 - [x] Perbaikan peramban Smart TV (Crossfade, mencegah layar berkedip/flicker).
-- [ ] Pengecekan ulang halaman-halaman lain (Beranda, Menu Utama, Tentang Kami, dll) agar seragam.
-- [ ] Optimasi performa dan gambar (Kompresi ukuran aset untuk loading cepat).
+- [x] Pengecekan ulang halaman-halaman lain (Beranda, Menu Utama, Tentang Kami, dll) agar seragam.
+- [x] Optimasi performa dan gambar (Kompresi ukuran aset untuk loading cepat).
   > **Yang Agent kerjakan:** Melakukan coding, perbaikan bug, dan optimasi performa Next.js.
   > **Yang Anda lakukan:** Me-review hasil tampilan, memberikan masukan, dan memastikan data konten (harga/menu) sudah valid.
 
@@ -18,8 +18,8 @@ Di sini juga dirincikan pembagian tugas antara Anda (Klien/Pemilik) dan saya (Ag
 *Meskipun konfigurasi awal SEO sudah ada, kita akan memastikannya maksimal agar mudah ditemukan di Google.*
 
 - [x] Konfigurasi Meta Tags dasar di `layout.tsx` (Title, Description, Keywords).
-- [ ] Menambahkan *Open Graph* image agar bagus saat link di-share ke WhatsApp/Sosmed.
-- [ ] Memastikan `robots.txt` dan `sitemap.xml` di-generate agar Google bot mudah mengindeks situs.
+- [x] Menambahkan *Open Graph* image agar bagus saat link di-share ke WhatsApp/Sosmed.
+- [x] Memastikan `robots.txt` dan `sitemap.xml` di-generate agar Google bot mudah mengindeks situs.
   > **Yang Agent kerjakan:** Membuat/mengedit file untuk keperluan struktur SEO sesuai standar Google.
   > **Yang Anda lakukan:** Menyediakan deskripsi bisnis, kata kunci yang diinginkan, serta logo/gambar untuk *Open Graph* jika belum ada.
 
