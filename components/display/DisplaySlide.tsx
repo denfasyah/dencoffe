@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { DisplayBoardItem } from "@/data/display";
@@ -156,55 +156,125 @@ export default function DisplaySlide({ currentIndex, displayBoardData, onVideoEn
 
   // ─── VIDEO TYPE ────────────────────────────────────────────────────────────
   if (item.type === "video") {
-    return (
-      <motion.div
-        key={item.id}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.6 }}
-        style={{ transform: "translateZ(0)", willChange: "transform" }}
-        className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-8 lg:p-10 text-white overflow-hidden"
-      >
-        <video
-          src={item.mediaUrl}
-          autoPlay
-          muted
-          playsInline
-          onEnded={onVideoEnd}
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        />
-        <div className="absolute inset-0 z-10" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 40%, transparent 100%)", transform: "translateZ(0)" }} />
-
-        <div className="relative z-20 space-y-2">
-          <motion.span
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="inline-block px-3 py-1 rounded-full text-[10px] font-black bg-teal-500 text-white uppercase tracking-widest"
-          >
-            Cuplikan Video
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-none tracking-tighter"
-          >
-            {item.title}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="text-xs sm:text-sm md:text-base text-neutral-200 leading-relaxed max-w-sm font-medium"
-          >
-            {item.description}
-          </motion.p>
-        </div>
-      </motion.div>
-    );
+    return <VideoSlide item={item} onVideoEnd={onVideoEnd} />;
   }
 
   return null;
+}
+
+// ─── VIDEO SLIDE COMPONENT (with forced autoplay for Smart TV) ──────────────
+interface VideoSlideProps {
+  item: DisplayBoardItem;
+  onVideoEnd?: () => void;
+}
+
+function VideoSlide({ item, onVideoEnd }: VideoSlideProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Reset & force play — needed for Smart TV / restricted browsers
+    video.load();
+
+    const attemptPlay = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Retry after short delay if autoplay blocked
+          setTimeout(() => {
+            video.play().catch(() => {});
+          }, 500);
+        });
+      }
+    };
+
+    // Play when enough data is loaded
+    video.addEventListener("canplay", attemptPlay, { once: true });
+
+    // On error, reload & retry
+    const handleError = () => {
+      setTimeout(() => {
+        video.load();
+        video.play().catch(() => {});
+      }, 1000);
+    };
+    video.addEventListener("error", handleError);
+
+    // Detect stall (video stopped unexpectedly) and resume
+    const handleStall = () => {
+      video.play().catch(() => {});
+    };
+    video.addEventListener("stalled", handleStall);
+    video.addEventListener("suspend", handleStall);
+
+    return () => {
+      video.removeEventListener("canplay", attemptPlay);
+      video.removeEventListener("error", handleError);
+      video.removeEventListener("stalled", handleStall);
+      video.removeEventListener("suspend", handleStall);
+      video.pause();
+    };
+  }, [item.mediaUrl]);
+
+  const handleEnded = () => {
+    // Try to loop first; if onVideoEnd provided, call it
+    if (onVideoEnd) {
+      onVideoEnd();
+    } else {
+      videoRef.current?.play().catch(() => {});
+    }
+  };
+
+  return (
+    <motion.div
+      key={item.id}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+      style={{ transform: "translateZ(0)", willChange: "transform" }}
+      className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-8 lg:p-10 text-white overflow-hidden"
+    >
+      <video
+        ref={videoRef}
+        src={item.mediaUrl}
+        muted
+        playsInline
+        preload="auto"
+        onEnded={handleEnded}
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ transform: "translateZ(0)" }}
+      />
+      <div className="absolute inset-0 z-10" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 40%, transparent 100%)", transform: "translateZ(0)" }} />
+
+      <div className="relative z-20 space-y-2">
+        <motion.span
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="inline-block px-3 py-1 rounded-full text-[10px] font-black bg-teal-500 text-white uppercase tracking-widest"
+        >
+          Cuplikan Video
+        </motion.span>
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-none tracking-tighter"
+        >
+          {item.title}
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="text-xs sm:text-sm md:text-base text-neutral-200 leading-relaxed max-w-sm font-medium"
+        >
+          {item.description}
+        </motion.p>
+      </div>
+    </motion.div>
+  );
 }

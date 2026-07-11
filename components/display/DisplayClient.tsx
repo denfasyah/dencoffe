@@ -207,12 +207,7 @@ export default function DisplayClient() {
         filterCoffeeItems={filterCoffeeItems}
       />
 
-      {/* Hidden Video Preloader */}
-      <div className="hidden">
-        {displayBoardData.filter(item => item.type === "video").map(item => (
-          <video key={`preload-${item.id}`} src={item.mediaUrl} preload="auto" />
-        ))}
-      </div>
+
     </div>
   );
 }
