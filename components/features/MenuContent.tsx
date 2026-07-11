@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
+import Image from "next/image";
 
 type Category = "Semua" | "Coffee" | "Non Coffee" | "Tea" | "Food" | "Espresso Base" | "Filter Coffee";
 const TABS: Category[] = ["Semua", "Coffee", "Non Coffee", "Tea", "Food", "Espresso Base", "Filter Coffee"];
@@ -18,8 +19,6 @@ export default function MenuContent() {
   const [filtered, setFiltered] = useState<MenuItem[]>([]);
 
   useEffect(() => {
-    setLoading(true);
-    setPage(1);
     const timer = setTimeout(() => {
       const result = activeTab === "Semua"
         ? menuData
@@ -44,7 +43,13 @@ export default function MenuContent() {
               {TABS.map((tab) => (
                 <button
                   key={tab}
-                  onClick={() => setActiveTab(tab)}
+                  onClick={() => {
+                    if (activeTab !== tab) {
+                      setLoading(true);
+                      setPage(1);
+                      setActiveTab(tab);
+                    }
+                  }}
                   className={`px-5 py-2 rounded-full text-sm font-bold transition-all cursor-pointer ${
                     activeTab === tab
                       ? "bg-primary text-on-primary shadow-sm"
@@ -84,7 +89,9 @@ export default function MenuContent() {
                     className="group flex flex-col"
                   >
                     <div className="overflow-hidden rounded-lg mb-3 relative aspect-[4/3] bg-surface-container shadow-sm">
-                      <img
+                      <Image
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         alt={item.name}
                         src={item.imageUrl}

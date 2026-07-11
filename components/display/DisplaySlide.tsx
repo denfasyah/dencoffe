@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { DisplayBoardItem } from "@/data/display";
 
 interface DisplaySlideProps {
@@ -81,7 +82,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData, onVideoEn
           {/* Glowing Background Effect behind the image */}
           <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-64 h-64 lg:w-96 lg:h-96 bg-white/20 blur-[80px] rounded-full" />
           
-          <motion.img
+          <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 50, rotate: -5 }}
             animate={{ 
               opacity: 1, 
@@ -95,10 +96,17 @@ export default function DisplaySlide({ currentIndex, displayBoardData, onVideoEn
               scale: { type: "spring", bounce: 0.4, duration: 1 },
               rotate: { type: "spring", bounce: 0.4, duration: 1 }
             }}
-            src={item.mediaUrl}
-            alt={item.title}
-            className="w-auto h-auto max-w-full max-h-full object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)] z-10 relative"
-          />
+            className="w-full h-full relative z-10"
+          >
+            <Image
+              src={item.mediaUrl}
+              alt={item.title}
+              fill
+              className="object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)]"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
+          </motion.div>
         </div>
       </motion.div>
     );
@@ -114,10 +122,13 @@ export default function DisplaySlide({ currentIndex, displayBoardData, onVideoEn
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="absolute inset-0 w-full h-full flex flex-col justify-end p-6 md:p-10 pb-24 md:pb-28 text-white overflow-hidden"
       >
-        <img 
+        <Image 
           src={item.mediaUrl} 
           alt={item.title} 
-          className="absolute inset-0 w-full h-full object-cover z-0" 
+          fill
+          className="object-cover z-0" 
+          sizes="100vw"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10" />
 

@@ -108,6 +108,7 @@ export default function Footer() {
               <input
                 className="bg-transparent border-none focus:outline-none focus:ring-0 text-xs px-3 w-full text-on-primary placeholder:text-on-primary/45"
                 placeholder="Email Anda"
+                aria-label="Alamat email untuk newsletter"
                 type="email"
                 required
                 value={email}

@@ -6,6 +6,7 @@ import { menuData, MenuItem } from "@/data/menu";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 type Category = "Semua" | "Coffee" | "Non Coffee" | "Tea" | "Food" | "Espresso Base" | "Filter Coffee";
 const TABS: Category[] = ["Semua", "Coffee", "Non Coffee", "Tea", "Food", "Espresso Base", "Filter Coffee"];
@@ -20,7 +21,6 @@ export default function MenuSection() {
   const [filteredMenu, setFilteredMenu] = useState<MenuItem[]>(menuData.slice(0, HOMEPAGE_LIMIT));
 
   useEffect(() => {
-    setLoading(true);
     const timer = setTimeout(() => {
       const filtered = activeTab === "Semua"
         ? menuData
@@ -57,7 +57,12 @@ export default function MenuSection() {
               {TABS.map((tab) => (
                 <button
                   key={tab}
-                  onClick={() => setActiveTab(tab)}
+                  onClick={() => {
+                    if (activeTab !== tab) {
+                      setLoading(true);
+                      setActiveTab(tab);
+                    }
+                  }}
                   className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                     activeTab === tab
                       ? "bg-primary text-on-primary shadow-sm"
@@ -97,7 +102,9 @@ export default function MenuSection() {
                     className="group flex flex-col"
                   >
                     <div className="overflow-hidden rounded-lg mb-3 relative aspect-[4/3] bg-surface-container">
-                      <img
+                      <Image
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         alt={item.name}
                         src={item.imageUrl}

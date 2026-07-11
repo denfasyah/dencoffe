@@ -2,7 +2,7 @@
 
 import React from "react";
 import { MenuItem } from "@/data/menu";
-import { Coffee, Sparkles, Utensils, Heart } from "lucide-react";
+import { Coffee, Sparkles, Utensils } from "lucide-react";
 import Image from "next/image";
 
 interface DisplayMenuProps {
@@ -34,7 +34,7 @@ export default function DisplayMenu({
         {/* Logo & Brand */}
         <div className="flex items-center gap-3">
           <div className="w-14 h-14 rounded-full border-4 flex items-center justify-center text-white relative flex-shrink-0 shadow-sm">
-             <Image src="/logo.png" alt="Logo" width={60} height={60} />
+             <Image src="/logo.png" alt="Logo" width={60} height={60} priority />
           </div>
           <div>
             <h1 className="text-xl md:text-2xl font-black text-neutral-900 tracking-tight leading-none uppercase">

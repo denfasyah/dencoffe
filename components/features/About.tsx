@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { aboutData } from "@/data/about";
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { ChevronDown, Leaf, Award } from "lucide-react";
 import { useRef } from "react";
 
@@ -45,15 +46,17 @@ export default function About() {
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            className="relative"
+            className="relative w-full aspect-[4/5] max-w-sm mx-auto"
           >
             <div className="absolute -top-6 -left-6 w-48 h-48 bg-primary/5 rounded-full -z-10" />
-            <img
-              className="rounded-xl shadow-2xl w-full aspect-[4/5] object-cover max-w-sm mx-auto"
+            <Image
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="rounded-xl shadow-2xl object-cover"
               alt={aboutData.imageAlt}
               src={aboutData.imageUrl}
             />
-            <div className="absolute -bottom-6 -right-6 bg-primary p-6 text-on-primary rounded-xl hidden md:block shadow-lg">
+            <div className="absolute -bottom-6 -right-6 bg-primary p-6 text-on-primary rounded-xl hidden md:block shadow-lg z-10">
               <p className="font-bold text-2xl leading-none mb-1">{aboutData.yearsOfCraft}</p>
               <p className="text-xs opacity-70">{aboutData.yearsLabel}</p>
             </div>

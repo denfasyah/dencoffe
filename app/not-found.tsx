@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Coffee, Home, ArrowLeft } from "lucide-react";
+import { Coffee, Home } from "lucide-react";
 
 export default function NotFound() {
   return (

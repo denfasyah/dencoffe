@@ -2,8 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import Image from "next/image";
 import { aboutData } from "@/data/about";
 import { featuresData } from "@/data/features";
 import { contactData } from "@/data/contact";
@@ -22,14 +21,7 @@ const getFeatureIcon = (name: string) => {
   }
 };
 
-const milestones = [
-  { year: "1998", title: "Awal Perjalanan", desc: "Denbiz Coffee dibuka pertama kali sebagai warung kopi kecil di Bandung oleh Pak Denis dan Ibu Bintang." },
-  { year: "2004", title: "Roastery Sendiri", desc: "Kami mulai memanggang biji kopi sendiri menggunakan mesin roaster manual pertama kami dari Italia." },
-  { year: "2010", title: "Penghargaan Pertama", desc: "Meraih penghargaan 'Kedai Kopi Terbaik Jawa Barat' dari Asosiasi Kopi Indonesia untuk pertama kalinya." },
-  { year: "2016", title: "Ekspansi & Modernisasi", desc: "Membuka tiga cabang baru dan meluncurkan program kemitraan langsung dengan petani kopi Flores dan Toraja." },
-  { year: "2022", title: "Sertifikasi Fair-Trade", desc: "Mendapatkan sertifikasi fair-trade internasional untuk seluruh rantai pasok biji kopi kami." },
-  { year: "2024", title: "Era Digital & Kini", desc: "Meluncurkan layanan reservasi online dan memperluas jangkauan ke seluruh Indonesia." },
-];
+
 
 const values = [
   { icon: "Leaf", title: "Berkelanjutan", desc: "Kami berkomitmen pada praktik pengadaan yang ramah lingkungan dan bertanggung jawab secara sosial kepada petani." },
@@ -39,9 +31,6 @@ const values = [
 ];
 
 export default function AboutContent() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
   return (
     <>
       {/* Main Story */}
@@ -49,13 +38,15 @@ export default function AboutContent() {
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
           {/* Gambar: order-2 di mobile (muncul setelah heading), order-1 di desktop (kembali ke kolom kiri) */}
           <SectionWrapper className="order-2 md:order-1">
-            <div className="relative">
-              <img
-                className="rounded-xl shadow-2xl w-full aspect-[4/5] object-cover"
+            <div className="relative w-full aspect-[4/5]">
+              <Image
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="rounded-xl shadow-2xl object-cover"
                 alt={aboutData.imageAlt}
                 src={aboutData.imageUrl}
               />
-              <div className="absolute -bottom-5 -right-5 bg-primary p-5 text-on-primary rounded-xl hidden md:block shadow-lg">
+              <div className="absolute -bottom-5 -right-5 bg-primary p-5 text-on-primary rounded-xl hidden md:block shadow-lg z-10">
                 <p className="font-bold text-2xl leading-none mb-1">{aboutData.yearsOfCraft}</p>
                 <p className="text-xs opacity-70">{aboutData.yearsLabel}</p>
               </div>
@@ -206,6 +197,7 @@ export default function AboutContent() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href={contactData.socials.whatsapp}
+              aria-label="Reservasi meja melalui WhatsApp"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-on-primary text-primary px-8 py-3 rounded-full font-bold text-sm hover:bg-surface-variant transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95"

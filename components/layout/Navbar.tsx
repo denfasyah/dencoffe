@@ -35,11 +35,12 @@ export default function Navbar() {
         <div className="flex justify-between items-center px-gutter max-w-container-max-width mx-auto">
           <a
             href="#home"
+            aria-label="Beranda Kedai Kopi Bang Jenggot"
             className={`text-3xl text-on-primary script-logo transition-transform duration-300 ${
               scrolled ? "scale-90" : ""
             }`}
           >
-            <Image src="/logo.png" alt="Logo" width={50} height={50} />
+            <Image src="/logo.png" alt="Logo" width={50} height={50} priority />
           </a>
 
           {/* Desktop Navigation */}
@@ -58,6 +59,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <a
               href={contactData.socials.whatsapp}
+              aria-label="Hubungi kami melalui WhatsApp untuk reservasi"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-block bg-on-primary text-primary px-6 py-2 rounded-full font-label-md text-xs font-bold hover:bg-surface-variant transition-all transform active:scale-95 text-center"
@@ -95,6 +97,7 @@ export default function Navbar() {
             ))}
             <a
               href={contactData.socials.whatsapp}
+              aria-label="Hubungi kami melalui WhatsApp untuk reservasi"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}

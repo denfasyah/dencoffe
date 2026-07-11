@@ -61,6 +61,7 @@ export default function Hero() {
           <a
             className="w-full sm:w-auto text-on-primary border border-on-primary/30 backdrop-blur-sm px-8 py-3.5 rounded-full font-label-md text-sm font-bold hover:bg-on-primary/10 transition-all text-center hover:scale-105 active:scale-95"
             href={contactData.socials.whatsapp}
+            aria-label="Reservasi meja melalui WhatsApp"
             target="_blank"
             rel="noopener noreferrer"
           >

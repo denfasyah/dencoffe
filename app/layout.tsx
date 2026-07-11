@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
+import { Manrope, Work_Sans, Sacramento } from "next/font/google";
 import "./globals.css";
+
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
+const workSans = Work_Sans({ subsets: ["latin"], variable: "--font-work-sans" });
+const sacramento = Sacramento({ weight: "400", subsets: ["latin"], variable: "--font-sacramento" });
 
 const BRAND = "Kedai Kopi Bang Jenggot";
 const BASE_URL = "https://kedaikopibangjenggot.com";
@@ -72,8 +77,31 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    name: BRAND,
+    image: `${BASE_URL}/logo.png`,
+    url: BASE_URL,
+    telephone: "+6287875330263",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Bekasi Barat",
+      addressLocality: "Bekasi",
+      addressRegion: "Jawa Barat",
+      addressCountry: "ID",
+    },
+  };
+
   return (
-    <html lang="id" className="scroll-smooth h-full antialiased">
+    <html lang="id" className={`scroll-smooth h-full antialiased ${manrope.variable} ${workSans.variable} ${sacramento.variable}`}>
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-on-background">
         {children}
       </body>

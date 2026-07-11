@@ -4,6 +4,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { galleryData } from "@/data/gallery";
 import { ZoomIn, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function GalleryGrid() {
   const [modalIndex, setModalIndex] = useState<number | null>(null);
@@ -76,7 +77,9 @@ export default function GalleryGrid() {
                 onClick={() => openModal(index)}
                 className={`${leftPositions[index]} overflow-hidden rounded-lg relative group cursor-pointer shadow-md`}
               >
-                <img
+                <Image
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   alt={item.alt}
                   src={item.imageUrl}
@@ -97,7 +100,9 @@ export default function GalleryGrid() {
                 onClick={() => openModal(4)}
                 className="col-start-3 row-start-1 row-span-2 overflow-hidden rounded-lg relative group cursor-pointer shadow-md"
               >
-                <img
+                <Image
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   alt={rightItem.alt}
                   src={rightItem.imageUrl}
@@ -143,12 +148,15 @@ export default function GalleryGrid() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image */}
-              <img
-                src={galleryData[modalIndex].imageUrl}
-                alt={galleryData[modalIndex].alt}
-                className="rounded-2xl shadow-2xl object-contain max-w-[85vw] max-h-[85vh] block"
-                style={{ maxWidth: "min(85vw, 900px)" }}
-              />
+              <div className="relative w-[85vw] h-[85vh] max-w-[900px]">
+                <Image
+                  src={galleryData[modalIndex].imageUrl}
+                  alt={galleryData[modalIndex].alt}
+                  fill
+                  sizes="100vw"
+                  className="rounded-2xl shadow-2xl object-contain block"
+                />
+              </div>
 
               {/* Close button */}
               <button
