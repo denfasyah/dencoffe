@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
   Play,
   Pause,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Eye
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { displayBoardData } from "@/data/display";
@@ -19,97 +20,144 @@ export default function DisplayClient() {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Handle Fullscreen API
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = async () => {
+    if (!document.fullscreenElement) {
+      await document.documentElement.requestFullscreen().catch(console.error);
+    } else {
+      await document.exitFullscreen().catch(console.error);
+    }
+  };
+
+  // Auto-reload every 30 minutes for fresh data
+  useEffect(() => {
+    const reloadTimer = setInterval(() => {
+      window.location.reload();
+    }, 30 * 60 * 1000);
+    return () => clearInterval(reloadTimer);
+  }, []);
 
   const totalSlides = displayBoardData.length || 4;
   const currentSlide = displayBoardData[currentIndex];
+  const slideDuration = currentSlide?.duration || 8000;
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
+  }, [totalSlides]);
 
   useEffect(() => {
     if (!isPlaying) return;
-    // Jika slide saat ini adalah video, jangan gunakan interval default.
-    // Transisi akan ditrigger oleh event onEnded dari video.
     if (currentSlide?.type === "video") return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-    }, 8000);
+      setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    }, slideDuration);
 
     return () => clearInterval(interval);
-  }, [isPlaying, totalSlides, currentSlide?.type]);
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-  };
+  }, [isPlaying, totalSlides, currentSlide?.type, slideDuration]);
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
-  // Group menu data by categories exactly matching the image
-  const coffeeItems = menuData.filter((item) => item.category === "Coffee");
-  const nonCoffeeItems = menuData.filter((item) => item.category === "Non Coffee");
-  const teaItems = menuData.filter((item) => item.category === "Tea");
-  const foodItems = menuData.filter((item) => item.category === "Food");
-  const espressoBaseItems = menuData.filter((item) => item.category === "Espresso Base");
-  const filterCoffeeItems = menuData.filter((item) => item.category === "Filter Coffee");
+  const coffeeItems       = menuData.filter((i) => i.category === "Coffee");
+  const nonCoffeeItems    = menuData.filter((i) => i.category === "Non Coffee");
+  const teaItems          = menuData.filter((i) => i.category === "Tea");
+  const foodItems         = menuData.filter((i) => i.category === "Food");
+  const espressoBaseItems = menuData.filter((i) => i.category === "Espresso Base");
+  const filterCoffeeItems = menuData.filter((i) => i.category === "Filter Coffee");
 
   const bgClass = currentSlide?.bgColor || "bg-neutral-900 text-white";
 
   return (
-    <div className="relative min-h-screen lg:h-screen w-full lg:w-screen bg-neutral-100 text-neutral-800 overflow-x-hidden overflow-y-auto lg:overflow-hidden flex flex-col lg:flex-row select-none font-sans">
-      
-      {/* 1. LEFT SIDE: Dynamic Slides (Solid Colors / Full Bleed Media) */}
-      <div className={`w-full lg:w-1/2 h-auto min-h-[650px] md:min-h-[600px] lg:h-full relative overflow-hidden flex flex-col justify-between ${bgClass} border-b lg:border-b-0 lg:border-r border-neutral-200 transition-colors duration-500`}>
-        
-        {/* Full Bleed Slides Container */}
-        <div className="absolute inset-0 z-0">
-          <AnimatePresence>
-            <DisplaySlide 
-              key={currentIndex} 
-              currentIndex={currentIndex} 
-              displayBoardData={displayBoardData} 
+    // Mobile: full-height column scroll | Smart TV: fixed viewport side-by-side
+    <div 
+      onClick={() => {
+        if (isFullscreen && document.fullscreenElement) {
+          document.exitFullscreen().catch(console.error);
+        }
+      }}
+      className="relative w-full bg-neutral-100 text-neutral-800 select-none font-sans
+      flex flex-col min-h-screen overflow-x-hidden overflow-y-auto
+      sm:flex-row sm:h-screen sm:w-screen sm:overflow-hidden"
+    >
+
+      {/* ── LEFT SIDE: Dynamic Slides ─────────────────────────────── */}
+      <div
+        className={`
+          w-full flex-shrink-0 relative overflow-hidden flex flex-col justify-between
+          h-[120vw]
+          sm:w-1/2 sm:h-full sm:min-h-0
+          border-b border-neutral-200 sm:border-b-0 sm:border-r
+          ${bgClass}
+        `}
+        style={{ transition: "background-color 0.7s ease", transform: "translateZ(0)", willChange: "background-color" }}
+      >
+        {/* Slides */}
+        <div className="absolute inset-0 z-0" style={{ transform: "translateZ(0)", willChange: "transform" }}>
+          <AnimatePresence mode="wait">
+            <DisplaySlide
+              key={currentIndex}
+              currentIndex={currentIndex}
+              displayBoardData={displayBoardData}
               onVideoEnd={handleNext}
             />
           </AnimatePresence>
         </div>
 
-        {/* Floating Header Back Button */}
-        <div className="p-4 md:p-6 flex justify-between items-center z-10 relative pointer-events-none">
-          <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 bg-black/15 hover:bg-black/30 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-white/90 transition-all duration-300 shadow-sm cursor-pointer group pointer-events-auto"
-          >
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
-            <span className="text-[10px] font-bold uppercase tracking-wider">Kembali</span>
-          </button>
+        {/* Header */}
+        {!isFullscreen && (
+          <div className="p-4 md:p-5 flex justify-between items-center z-10 relative pointer-events-none">
+            <button
+              onClick={() => router.back()}
+              className="flex items-center gap-2 bg-black/20 hover:bg-black/35 border border-white/15 px-3.5 py-1.5 rounded-full text-white/90 cursor-pointer group pointer-events-auto"
+              style={{ transition: "background-color 0.2s ease" }}
+            >
+              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5" style={{ transition: "transform 0.2s ease" }} />
+              <span className="text-[10px] font-bold uppercase tracking-wider">Kembali</span>
+            </button>
 
-          <div className="flex items-center gap-1.5 bg-black/15 border border-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-white/90 text-[10px] font-black tracking-widest uppercase shadow-sm pointer-events-auto">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Live
+            <div className="flex items-center gap-1.5 bg-black/20 border border-white/15 px-3.5 py-1.5 rounded-full text-white/90 text-[10px] font-black tracking-widest uppercase pointer-events-auto">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Live
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Empty Flex Grow spacer so flex-col justify-between works around the absolute background */}
+        {/* Spacer */}
         <div className="flex-grow pointer-events-none" />
 
         {/* Bottom Controls */}
-        <div className="p-4 md:p-6 flex items-center justify-between z-10 border-t border-black/5 bg-black/5 backdrop-blur-xs relative pointer-events-none">
+        {!isFullscreen && (
+          <div className="p-4 md:p-5 flex items-center justify-between z-10 relative pointer-events-none">
           {/* Progress dots */}
           <div className="flex gap-1.5 pointer-events-auto">
             {Array.from({ length: totalSlides }).map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className="group relative h-1 rounded-full overflow-hidden transition-all duration-300 cursor-pointer"
+                className="relative h-1 rounded-full overflow-hidden cursor-pointer"
                 style={{
                   width: currentIndex === idx ? "1.25rem" : "0.4rem",
-                  backgroundColor: currentIndex === idx ? "rgba(255, 255, 255, 0.9)" : "rgba(255, 255, 255, 0.4)"
+                  backgroundColor: currentIndex === idx ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.4)",
+                  transition: "width 0.3s ease, background-color 0.3s ease"
                 }}
               >
                 {currentIndex === idx && isPlaying && (
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
-                    transition={{ duration: 8, ease: "linear" }}
+                    transition={{ duration: slideDuration / 1000, ease: "linear" }}
                     className="absolute inset-0 bg-white"
                   />
                 )}
@@ -117,8 +165,15 @@ export default function DisplayClient() {
             ))}
           </div>
 
-          {/* Action buttons */}
+          {/* Nav buttons */}
           <div className="flex items-center gap-1.5 pointer-events-auto">
+            <button
+              onClick={toggleFullscreen}
+              className="p-1.5 bg-white/90 hover:bg-white text-neutral-700 border border-neutral-200 rounded-full shadow-sm cursor-pointer"
+              title="Fullscreen TV Mode"
+            >
+              <Eye className="w-3.5 h-3.5" />
+            </button>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
               className="p-1.5 bg-white/90 hover:bg-white text-neutral-700 border border-neutral-200 rounded-full shadow-sm cursor-pointer"
@@ -139,10 +194,11 @@ export default function DisplayClient() {
             </button>
           </div>
         </div>
+        )}
       </div>
 
-      {/* 2. RIGHT SIDE: Fixed Complete Menu Component (White Background) */}
-      <DisplayMenu 
+      {/* ── RIGHT SIDE: Menu ──────────────────────────────────────── */}
+      <DisplayMenu
         coffeeItems={coffeeItems}
         nonCoffeeItems={nonCoffeeItems}
         teaItems={teaItems}
@@ -150,7 +206,13 @@ export default function DisplayClient() {
         espressoBaseItems={espressoBaseItems}
         filterCoffeeItems={filterCoffeeItems}
       />
-      
+
+      {/* Hidden Video Preloader */}
+      <div className="hidden">
+        {displayBoardData.filter(item => item.type === "video").map(item => (
+          <video key={`preload-${item.id}`} src={item.mediaUrl} preload="auto" />
+        ))}
+      </div>
     </div>
   );
 }

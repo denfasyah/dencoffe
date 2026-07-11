@@ -8,6 +8,7 @@ export interface DisplayBoardItem {
   promoBadge?: string;
   mediaUrl: string; // Image or Video URL
   bgColor?: string; // Solid Tailwind class, e.g. "bg-orange-600"
+  duration?: number; // Custom auto-play duration in milliseconds
 }
 
 export const displayBoardData: DisplayBoardItem[] = [

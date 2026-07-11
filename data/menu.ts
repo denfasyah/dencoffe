@@ -66,8 +66,16 @@ export const menuData: MenuItem[] = [
     imageUrl: "/assets/menu/coffe/caramellatte.png",
     category: "Coffee"
   },
-  {
+   {
     id: "c8",
+    name: "Caramel Mocha Float",
+    price: "Rp 25.000",
+    description: "Coffee latte lembut dengan tambahan sirup karamel gurih nan manis aromatik.",
+    imageUrl: "/assets/menu/coffe/caramellatte.png",
+    category: "Coffee"
+  },
+  {
+    id: "c9",
     name: "Vanilla Latte",
     price: "Rp 20.000",
     description: "Latte creamy berpadu dengan sirup vanilla premium yang harum menenangkan.",
@@ -75,7 +83,7 @@ export const menuData: MenuItem[] = [
     category: "Coffee"
   },
   {
-    id: "c9",
+    id: "c10",
     name: "Hazelnut",
     price: "Rp 20.000",
     description: "Minuman espresso bersusu dengan tambahan sirup kacang hazelnut yang gurih legit.",
@@ -83,7 +91,7 @@ export const menuData: MenuItem[] = [
     category: "Coffee"
   },
   {
-    id: "c10",
+    id: "c11",
     name: "Klepon / Pandan",
     price: "Rp 20.000",
     description: "Sensasi kopi susu unik dengan rasa gurih pandan kelapa layaknya kue tradisional klepon.",
@@ -91,7 +99,7 @@ export const menuData: MenuItem[] = [
     category: "Coffee"
   },
   {
-    id: "c11",
+    id: "c12",
     name: "Butterscotch",
     price: "Rp 20.000",
     description: "Kopi susu dengan rasa manis mentega karamel panggang (butterscotch) yang tebal.",
@@ -99,7 +107,7 @@ export const menuData: MenuItem[] = [
     category: "Coffee"
   },
   {
-    id: "c12",
+    id: "c13",
     name: "Red Velvet",
     price: "Rp 20.000",
     description: "Perpaduan kopi dengan rasa manis beludru merah yang lembut dan creamy.",
@@ -107,11 +115,19 @@ export const menuData: MenuItem[] = [
     category: "Coffee"
   },
   {
-    id: "c13",
+    id: "c14",
     name: "Special Blend",
     price: "Rp 22.000",
     description: "Racikan kopi spesial house blend andalan Kopi Bang Jenggot dengan cita rasa khas.",
     imageUrl: "/assets/menu/coffe/spesialblend.png",
+    category: "Coffee"
+  },
+     {
+    id: "c15",
+    name: "Spanish Latte",
+    price: "Rp 17.000",
+    description: "Coffee latte lembut dengan tambahan sirup karamel gurih nan manis aromatik.",
+    imageUrl: "/assets/menu/coffe/caramellatte.png",
     category: "Coffee"
   },
 
@@ -218,6 +234,14 @@ export const menuData: MenuItem[] = [
   },
   {
     id: "f5",
+    name: "Roti Bakar Coklat Keju",
+    price: "Rp 20.000",
+    description: "Roti bakar gurih dengan taburan keju cheddar parut melimpah di atasnya.",
+    imageUrl: "/assets/menu/food/rotibakarkeju.png",
+    category: "Food"
+  },
+  {
+    id: "f6",
     name: "Indomie (Rebus/Goreng)",
     price: "Rp 18.000",
     description: "Mie instan favorit disajikan rebus hangat dengan kuah lezat atau goreng gurih.",
@@ -225,7 +249,7 @@ export const menuData: MenuItem[] = [
     category: "Food"
   },
   {
-    id: "f6",
+    id: "f7",
     name: "Dimsum",
     price: "Rp 18.000",
     description: "Dimsum ayam kukus premium yang lembut dan padat, disajikan hangat dengan chili oil.",
@@ -233,7 +257,7 @@ export const menuData: MenuItem[] = [
     category: "Food"
   },
   {
-    id: "f7",
+    id: "f8",
     name: "Singkong Original",
     price: "Rp 15.000",
     description: "Singkong goreng tradisional bumbu rempah dengan tekstur mekar yang gurih empuk.",
@@ -241,7 +265,7 @@ export const menuData: MenuItem[] = [
     category: "Food"
   },
   {
-    id: "f8",
+    id: "f9",
     name: "Singkong Keju",
     price: "Rp 18.000",
     description: "Singkong empuk gurih bertabur keju parut gurih asin di atasnya.",
@@ -249,7 +273,7 @@ export const menuData: MenuItem[] = [
     category: "Food"
   },
   {
-    id: "f9",
+    id: "f10",
     name: "Cheese Burger",
     price: "Rp 18.000",
     description: "Burger dengan roti empuk, beef patty panggang juicy, saus lezat, dan keju lumer.",
