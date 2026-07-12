@@ -45,6 +45,13 @@ export const displayBoardData: DisplayBoardItem[] = [
     mediaUrl: "/assets/display/bestseller1.png",
     bgColor: "bg-[#008080] text-white"
   },
+    {
+    id: "d3",
+    type: "image",
+    title: "Cuplikan Galeri",
+    description: "Kumpulan momen dan visual terbaik yang menggambarkan suasana serta pengalaman terbaik di kedai kami.",
+    mediaUrl: "/assets/display/img9.png"
+  },
   {
     id: "d3",
     type: "video",
