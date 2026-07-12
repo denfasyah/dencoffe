@@ -19,7 +19,7 @@ function MenuRow({ name, price }: { name: string; price: string }) {
   const short = price.replace("Rp ", "").replace(".000", "K");
   return (
     <div className="flex items-baseline gap-1 leading-none py-[2px]">
-      <span className="font-semibold text-neutral-700 min-w-0 break-words">{name}</span>
+      <span className="font-black text-neutral-700 min-w-0 break-words">{name}</span>
       <span className="flex-1 border-b border-dotted border-neutral-200 mx-1 mb-[3px] shrink-0" />
       <span className="font-extrabold text-neutral-900 whitespace-nowrap tabular-nums">{short}</span>
     </div>

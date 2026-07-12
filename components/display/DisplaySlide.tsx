@@ -68,7 +68,7 @@ export default function DisplaySlide({ currentIndex, displayBoardData, onVideoEn
               initial={{ opacity: 0, y: 16, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ type: "spring", bounce: 0.4, duration: 0.7, delay: 0.4 }}
-              className="inline-flex flex-col items-start gap-1 py-4 self-start"
+              className="inline-flex flex-col items-start gap-1 py-4 self-start bg"
             >
               <span className="text-white/75 text-[10px] uppercase font-black tracking-widest">
                 Harga Khusus

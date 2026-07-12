@@ -12,15 +12,26 @@ export interface DisplayBoardItem {
 }
 
 export const displayBoardData: DisplayBoardItem[] = [
-  {
+  // {
+  //   id: "d1",
+  //   type: "promo",
+  //   title: "Hazelnut & Cheese Burger",
+  //   subtitle: "Promo Sarapan Istimewa",
+  //   description: "Solusi lapar dan haus dalam satu sajian dengan harga spesial.",
+  //   price: "Rp 35.000",
+  //   promoBadge: "PROMO HEMAT",
+  //   mediaUrl: "/assets/display/promo.png",
+  //   bgColor: "bg-red-600 text-white"
+  // },
+   {
     id: "d1",
-    type: "promo",
-    title: "Hazelnut & Cheese Burger",
-    subtitle: "Promo Sarapan Istimewa",
-    description: "Solusi lapar dan haus dalam satu sajian dengan harga spesial.",
-    price: "Rp 35.000",
-    promoBadge: "PROMO HEMAT",
-    mediaUrl: "/assets/display/promo.png",
+    type: "bestseller",
+    title: "Butterscotch",
+    subtitle: "Rekomendasi Barista",
+    description: "Kopi susu dengan rasa manis mentega karamel panggang (butterscotch) yang tebal.",
+    price: "Rp 20.000",
+    promoBadge: "BEST SELLER 1",
+    mediaUrl: "/assets/display/butterscotch.png",
     bgColor: "bg-red-600 text-white"
   },
   {
@@ -30,7 +41,7 @@ export const displayBoardData: DisplayBoardItem[] = [
     subtitle: "Rekomendasi Barista",
     description: "Perpaduan espresso Arabika robusta, susu segar, dan sirup vanilla premium.",
     price: "Rp 20.000",
-    promoBadge: "BEST SELLER",
+    promoBadge: "BEST SELLER 2",
     mediaUrl: "/assets/display/bestseller1.png",
     bgColor: "bg-[#008080] text-white"
   },
