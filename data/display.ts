@@ -47,29 +47,40 @@ export const displayBoardData: DisplayBoardItem[] = [
   },
     {
     id: "d3",
+    type: "bestseller",
+    title: "Coffee Lemon",
+    subtitle: "Rekomendasi Barista",
+    description: "Perpaduan rasa pahit kopi dengan kesegaran asam buah lemon.",
+    price: "Rp 20.000",
+    promoBadge: "BEST SELLER 3",
+    mediaUrl: "/assets/display/coffelemon.png",
+    bgColor: "bg-[#00296b] text-white"
+  },
+    {
+    id: "d4",
     type: "image",
     title: "Cuplikan Galeri",
     description: "Kumpulan momen dan visual terbaik yang menggambarkan suasana serta pengalaman terbaik di kedai kami.",
     mediaUrl: "/assets/display/img9.png"
   },
   {
-    id: "d3",
+    id: "d5",
     type: "video",
     title: "Cuplikan Galeri",
     description: "Kumpulan momen dan visual terbaik yang menggambarkan suasana serta pengalaman terbaik di kedai kami.",
-    mediaUrl: "/assets/display/cuplikan3.mp4"
+    mediaUrl: "/assets/display/cuplikan5.mp4"
   },
   {
-    id: "d4",
+    id: "d6",
     type: "video",
     title: "Cuplikan",
     description: "Video singkat yang menampilkan berbagai momen di pagi hari.",
     mediaUrl: "/assets/display/cuplikan2.mp4"
   },
     {
-    id: "d5",
+    id: "d7",
     type: "video",
-    title: "Coffe Time",
+    title: "Coffee Time",
     description: "Video singkat yang menampilkan proses pembuatan kopi di kedai kami",
     mediaUrl: "/assets/display/coffetime.mp4"
   },
